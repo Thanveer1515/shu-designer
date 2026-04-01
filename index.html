@@ -54,14 +54,18 @@ button,a{cursor:none}
 @keyframes ldBar{0%{width:0}100%{width:100%}}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:90px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:90px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;gap:18px;transition:all 0.4s}
 nav.stuck{background:rgba(13,11,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0;flex:0 1 auto}
+.nav-logo .crop-logo-box{width:65px !important;height:65px !important}
 .nav-logo-shoe{font-size:28px;animation:logoFloat 3s ease-in-out infinite}
 @keyframes logoFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
 .nav-logo-text{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);letter-spacing:5px;line-height:1}
+.nav-logo-copy{min-width:0}
+.nav-logo-sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:4px;white-space:nowrap}
 /* NAV SEARCH STRIP */
 .search-strip{position:fixed;top:90px;left:0;right:0;height:60px;background:rgba(13,11,8,0.85);backdrop-filter:blur(15px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:190;transition:transform 0.4s}
+.search-strip.hidden{transform:translateY(-100%);opacity:0;pointer-events:none}
 nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
 .nav-search{width:400px;display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1px solid var(--border);padding:8px 16px;border-radius:4px;transition:all 0.3s}
 .nav-search:focus-within{border-color:var(--gold);background:rgba(200,151,58,0.06);width:460px;box-shadow:0 0 20px rgba(200,151,58,0.15)}
@@ -75,11 +79,13 @@ nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
     .nav-search:focus-within{width:85%}
 }
 
-.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links{display:flex;gap:32px;list-style:none;flex:1 1 auto;justify-content:center;min-width:0}
 .nav-links a{color:var(--warm);text-decoration:none;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:300;transition:color 0.3s;padding-bottom:3px;border-bottom:1px solid transparent}
 .nav-links a:hover{color:var(--gold);border-bottom-color:var(--gold)}
-.nav-right{display:flex;gap:12px;align-items:center}
-.nav-btn{background:transparent;border:1px solid var(--border);color:var(--cream);padding:8px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:all 0.3s;position:relative;overflow:hidden}
+.nav-right{display:flex;gap:12px;align-items:center;flex:0 0 auto;min-width:0;margin-left:auto;padding-left:16px}
+.nav-btn{background:transparent;border:1px solid var(--border);color:var(--cream);padding:8px 18px;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:all 0.3s;position:relative;overflow:hidden;white-space:nowrap;flex-shrink:0}
+.nav-btn .auth-text,.nav-btn .cart-text{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#authNavBtn{max-width:132px}
 .nav-btn::before{content:'';position:absolute;inset:0;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.3s;z-index:-1}
 .nav-btn:hover{color:var(--ink);border-color:var(--gold)}
 .nav-btn:hover::before{transform:scaleX(1)}
@@ -152,7 +158,9 @@ nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
 .featured-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .feat-shoe-stage{position:relative;height:460px;display:flex;align-items:center;justify-content:center}
-.feat-shoe-anim{font-size:200px;animation:featFloat 3.5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(200,151,58,0.15));position:relative;z-index:2}
+.feat-shoe-frame{position:relative;z-index:2;width:min(100%,540px);padding:28px;background:linear-gradient(145deg,rgba(28,22,14,0.92),rgba(12,10,7,0.95));border:1px solid rgba(212,175,55,0.18);box-shadow:0 28px 60px rgba(0,0,0,0.42);clip-path:polygon(0 0,calc(100% - 24px) 0,100% 24px,100% 100%,24px 100%,0 calc(100% - 24px));animation:featFloat 3.5s ease-in-out infinite}
+.feat-shoe-frame::before{content:'';position:absolute;inset:14px;border:1px solid rgba(212,175,55,0.12);pointer-events:none}
+.feat-shoe-anim{width:100%;aspect-ratio:806/537;object-fit:cover;display:block;position:relative;z-index:2;filter:drop-shadow(0 18px 34px rgba(0,0,0,0.35)) saturate(1.06) contrast(1.03)}
 .feat-rings{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .feat-ring{position:absolute;border-radius:50%;border:1px solid rgba(200,151,58,0.1);animation:ringPulse 3s ease-in-out infinite}
 .feat-ring:nth-child(1){width:200px;height:200px;animation-delay:0s}
@@ -211,6 +219,16 @@ nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
 .swatches{display:flex;gap:5px}
 .sw{width:14px;height:14px;border-radius:50%;border:1.5px solid transparent;transition:border-color 0.2s}
 .sw:hover,.sw.on{border-color:var(--gold)}
+.color-status{margin:18px 0 24px;padding:14px 16px;border:1px solid rgba(212,175,55,0.2);background:rgba(255,255,255,0.02);font-size:12px;color:var(--warm);line-height:1.7}
+.color-status strong{color:var(--gold);font-weight:500}
+.related-color-wrap{margin-top:8px}
+.related-color-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.related-color-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.related-color-card{background:rgba(255,255,255,0.02);border:1px solid var(--border);padding:12px;cursor:pointer;transition:border-color 0.2s,transform 0.2s}
+.related-color-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.related-color-card img{width:100%;aspect-ratio:1/0.78;object-fit:cover;display:block;margin-bottom:10px;background:#120f0b}
+.related-color-name{font-size:12px;color:var(--cream);font-weight:500}
+.related-color-meta{font-size:10px;color:var(--muted);margin-top:4px;text-transform:uppercase;letter-spacing:1px}
 
 /* COLLECTIONS */
 .coll-section{padding:110px 80px;background:var(--ink)}
@@ -509,6 +527,21 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 .c-submit{background:var(--gold);color:var(--ink);border:none;padding:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-weight:600;margin-top:8px;transition:background 0.2s}
 .c-submit:hover{background:var(--gold2)}
 .c-guarantee{font-size:11px;color:var(--muted);text-align:center;margin-top:12px;font-style:italic}
+.contact-page-wrap{min-height:100vh;background:var(--ink);padding:170px 80px 80px}
+.contact-page-shell{max-width:1240px;margin:0 auto}
+.contact-page-hero{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:44px}
+.contact-page-title{font-family:'Cormorant Garamond',serif;font-size:58px;color:var(--cream);font-weight:300;line-height:1}
+.contact-page-sub{max-width:520px;font-size:14px;color:var(--muted);line-height:1.8}
+.contact-page-grid{display:grid;grid-template-columns:0.95fr 1.25fr;gap:28px}
+.contact-panel{background:var(--card);border:1px solid var(--border);padding:32px}
+.contact-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.contact-stat{border:1px solid rgba(212,175,55,0.18);background:rgba(255,255,255,0.02);padding:18px}
+.contact-stat-k{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--gold);line-height:1}
+.contact-stat-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.contact-form-card{background:linear-gradient(180deg,rgba(255,255,255,0.015),rgba(255,255,255,0.01))}
+.contact-form-title{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--cream);font-weight:300;margin-bottom:8px}
+.contact-form-sub{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:26px}
+.contact-note{margin-top:16px;font-size:11px;color:var(--muted);line-height:1.8}
 /* NAV TOGGLE */
 .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;width:30px;height:35px;justify-content:center;z-index:201}
 .nav-toggle span{width:100%;height:2px;background:var(--gold);transition:all 0.3s}
@@ -530,10 +563,17 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 
 @media(max-width:900px){
   nav{padding:0 20px;height:80px}
+  .nav-logo .crop-logo-box{width:56px !important;height:56px !important}
   .nav-toggle{display:flex}
-  .nav-links{position:fixed;top:0;right:0;bottom:0;width:280px;background:var(--card);border-left:1px solid var(--border);flex-direction:column;padding:120px 40px;gap:25px;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);z-index:200}
+  .nav-logo{gap:10px;max-width:calc(100% - 210px)}
+  .nav-logo-text{font-size:22px;letter-spacing:3px}
+  .nav-logo-sub{font-size:9px;letter-spacing:2px}
+  .nav-links{position:fixed;top:0;right:0;bottom:0;width:280px;background:var(--card);border-left:1px solid var(--border);flex-direction:column;padding:120px 40px;gap:25px;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);z-index:200;justify-content:flex-start}
   .nav-links.open{transform:translateX(0)}
+  .mobile-menu-item{display:list-item}
   .nav-links a{font-size:14px;letter-spacing:4px}
+  .nav-right{gap:8px;padding-left:10px}
+  .nav-btn{padding:8px 12px;letter-spacing:1px}
   
   .hero{grid-template-columns:1fr;min-height:auto;padding-bottom:100px}
   .hero-left{padding:180px 30px 40px;text-align:center;align-items:center}
@@ -605,9 +645,13 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 }
 
 @media(max-width:480px){
-    .nav-logo-text{font-size:20px;letter-spacing:3px}
-    .nav-logo-sub{color:white}
-    .nav-btn{padding:8px 12px;font-size:9px}
+    nav{padding:0 14px;gap:10px}
+    .nav-logo{max-width:calc(100% - 160px);gap:8px}
+    .nav-logo .crop-logo-box{width:48px !important;height:48px !important}
+    .nav-logo-text{font-size:18px;letter-spacing:2px}
+    .nav-logo-sub{font-size:8px;letter-spacing:1.5px;color:var(--warm)}
+    .crop-logo-box{flex-shrink:0}
+    .nav-btn{padding:8px 10px;font-size:9px}
     .hero-h1{font-size:36px}
     .hero-p{font-size:12px}
     .hero-stats{gap:15px}
@@ -617,9 +661,26 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 
 @media(max-width:900px){
     .nav-search{display:none} /* Hide bar on mobile nav, maybe put inside links later */
-    .nav-btn span.cart-text, .nav-btn span.auth-text{display:none}
+    .nav-btn span.cart-text{display:none}
     .nav-btn{min-width:40px;display:flex;align-items:center;justify-content:center}
 }
+
+@media(max-width:640px){
+    .nav-logo{max-width:calc(100% - 185px)}
+    .nav-logo-text{font-size:19px;letter-spacing:2px}
+    .nav-logo-sub{display:none}
+    #wishlistNavBtn{display:none !important}
+    #authNavBtn{padding:8px 14px;max-width:108px}
+}
+
+@media(max-width:380px){
+    .nav-logo{max-width:calc(100% - 148px)}
+    .nav-logo-text{font-size:16px;letter-spacing:1.5px}
+    .nav-right{padding-left:6px;gap:6px}
+    #authNavBtn{padding:8px 12px;max-width:92px}
+}
+
+.mobile-menu-item{display:none}
 
 /* QR PAYMENT STYLES */
 .qr-screen {
@@ -732,7 +793,193 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 #paymentMethodModal{z-index:1000002}
 #paymentModal{z-index:1000002}
 #qrPaymentModal{z-index:1000003}
+@media(max-width:1200px){
+  .featured-section,.products-section,.coll-section,.process-section,.testi-section{padding:96px 48px}
+  .nl-section,footer{padding:72px 48px}
+  .hero-left{padding:160px 48px 72px}
+  .feat-grid,.nl-inner{gap:48px}
+  .coll-grid{grid-template-columns:1.4fr 1fr 1fr}
+  .pdp-right{padding:56px 48px}
+  .chk-page{padding:160px 48px 64px;gap:40px}
+  #page-orders > div{padding:160px 48px 64px !important}
+  .success-container{margin:130px 32px 48px;padding:48px 36px}
+}
+
+@media(max-width:900px){
+  body{cursor:auto}
+  button,a{cursor:pointer}
+  #cursor,#cursor-ring{display:none}
+  .featured-section,.products-section,.coll-section,.process-section,.testi-section{padding:84px 24px}
+  .nl-section,footer{padding:64px 24px}
+  .sec-header{flex-direction:column;align-items:flex-start;gap:18px}
+  .hero-left{padding:150px 24px 32px}
+  .hero-stats{width:100%;flex-wrap:wrap}
+  .hero-bg-word{font-size:128px}
+  .floating-shoe-container{width:min(100%,320px);height:280px}
+  .info-tag{min-width:120px;padding:10px 12px}
+  .shoe-badge{width:78px;height:78px;font-size:9px}
+  .shoe-badge span{font-size:20px}
+  .feat-shoe-stage{height:auto;min-height:300px}
+  .feat-shoe-frame{padding:22px;width:min(100%,460px)}
+  .feat-ring:nth-child(1){width:180px;height:180px}
+  .feat-ring:nth-child(2){width:250px;height:250px}
+  .feat-ring:nth-child(3){width:320px;height:320px}
+  .price-float{left:0;bottom:20px}
+  .coll-card,.coll-card.big{min-height:320px}
+  .coll-front,.coll-back{position:relative}
+  .coll-inner{height:100%}
+  .coll-back-desc{max-width:none}
+  .testi-card,.proc-card,.admin-panel,.chk-right{padding:24px}
+  .auth-right,.auth-left{padding:40px 24px}
+  .auth-brand{font-size:34px;letter-spacing:5px}
+  .form-row2,.admin-form-grid,.address-grid{grid-template-columns:1fr}
+  .cart-drawer{width:min(100%,380px)}
+  .cart-head,.cart-items{padding:24px}
+  .cart-foot{padding:20px 24px}
+  .pdp-left{min-height:360px}
+  .pdp-right{max-height:none;padding:40px 24px}
+  .chk-page{padding:140px 24px 48px;gap:28px}
+  #page-checkout > .nav-btn{top:92px !important;left:20px !important}
+  #page-orders > div{padding:140px 24px 48px !important}
+  #page-orders h1{font-size:46px !important}
+  #page-orders [style*='display:flex;align-items:center;gap:16px;margin-bottom:24px']{flex-wrap:wrap}
+  .success-container{margin:120px 24px 40px;padding:40px 28px}
+  .success-meta{gap:18px;flex-wrap:wrap}
+  .policy-header{padding:20px 24px}
+  .policy-body{padding:24px}
+  .contact-flex{gap:24px}
+  .policy-popup-bottom{width:calc(100% - 24px);bottom:12px;padding:16px}
+  .orders-table,.admin-products-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;white-space:nowrap}
+  .orders-table tbody,.orders-table thead,.admin-products-table tbody,.admin-products-table thead{display:table;width:100%}
+  .contact-page-wrap{padding:146px 24px 48px}
+  .contact-page-hero{flex-direction:column;align-items:flex-start;margin-bottom:28px}
+  .contact-page-title{font-size:46px}
+  .contact-page-grid{grid-template-columns:1fr}
+  .contact-panel{padding:24px}
+}
+
+@media(max-width:700px){
+  .hero-h1,.feat-title,.sec-title,.chk-title,.success-title{line-height:1.05}
+  .hero-cta{width:100%;flex-direction:column}
+  .hero-cta .btn-pri,.hero-cta .btn-sec{width:100%;text-align:center}
+  .hero-stats{gap:18px;padding-top:28px;margin-top:36px}
+  .info-tag.it2,.info-tag.it3{display:none}
+  .feat-price-big{font-size:42px}
+  .prod-body{padding:16px}
+  .prod-foot{align-items:flex-start;gap:12px;flex-direction:column}
+  .coll-grid{grid-template-columns:1fr}
+  .proc-grid,.testi-grid,.admin-stats{grid-template-columns:1fr}
+  .nl-title{font-size:38px}
+  .nl-form{flex-direction:column}
+  .nl-in{border-right:1px solid rgba(13,11,8,0.25)}
+  .nl-go{width:100%}
+  .foot-top{grid-template-columns:1fr;text-align:center}
+  .foot-about{max-width:none}
+  .foot-links{align-items:center}
+  .auth-shoe-big{font-size:92px}
+  .auth-title{font-size:34px}
+  .admin-topbar{align-items:flex-start;flex-direction:column;gap:12px}
+  .pdp-title{font-size:42px}
+  .pdp-price{font-size:32px;flex-wrap:wrap}
+  .chk-right{padding:22px}
+  #newAddrForm{padding:24px !important}
+  #newAddrForm > div[style*='display:flex;gap:12px']{flex-direction:column}
+  .pay-box{margin:16px;width:calc(100% - 32px)}
+  .pay-head{align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .qr-container{width:190px;height:190px}
+  @keyframes qrScan {
+    0% { top: 10px; }
+    100% { top: 180px; }
+  }
+}
+
 @media(max-width:580px){
+  .hero-left{padding:138px 20px 28px}
+  .featured-section,.products-section,.coll-section,.process-section,.testi-section{padding:72px 20px}
+  .nl-section,footer{padding:52px 20px}
+  .hero-bg-word{font-size:92px;letter-spacing:4px}
+  .floating-shoe-container{height:250px}
+  .main-shoe{clip-path:none}
+  .hero-h1{font-size:42px}
+  .hero-p{font-size:12px;max-width:none}
+  .stat-n{font-size:30px}
+  .sec-title{font-size:34px}
+  .feat-title{font-size:38px}
+  .feat-shoe-frame{padding:18px}
+  .price-float{position:relative;left:auto;bottom:auto;margin-top:20px}
+  .prod-grid,.coll-grid,.proc-grid{grid-template-columns:1fr}
+  .prod-img{height:240px}
+  .filter-wrap{gap:10px}
+  .f-btn{flex:1 1 calc(50% - 10px);text-align:center}
+  .testi-text{font-size:16px}
+  .cart-head-title,.policy-title{font-size:26px}
+  .cart-drawer{width:100%}
+  .toast{left:12px;right:12px;transform:translateY(80px);white-space:normal;padding:12px 16px}
+  .toast.show{transform:translateY(0)}
+  .auth-tabs{margin-bottom:28px}
+  .auth-tab{padding:12px 8px;letter-spacing:1px}
+  .form-submit{letter-spacing:2px}
+  .admin-panel{padding:20px}
+  .admin-page-title{font-size:28px}
+  .upload-zone{padding:24px}
+  .pdp-left{min-height:300px}
+  .pdp-title{font-size:34px}
+  .pdp-desc{font-size:12px}
+  .related-color-grid{grid-template-columns:1fr}
+  .chk-page{padding:130px 20px 40px}
+  .chk-title{font-size:36px}
+  #page-checkout > .nav-btn{position:static !important;margin:96px 20px 0 !important;display:inline-flex}
+  #page-orders > div{padding:132px 20px 40px !important}
+  #page-orders h1{font-size:38px !important}
+  #page-orders p[style*='font-size:14px']{font-size:13px !important}
+  .success-container{margin:108px 16px 32px;padding:32px 20px}
+  .success-title{font-size:38px}
+  .order-id{font-size:26px}
+  .success-icon{font-size:64px}
+  .meta-box{min-width:120px}
+  .policy-box{width:calc(100% - 16px);height:auto;max-height:88vh}
+  .policy-header{padding:18px 16px}
+  .policy-body{padding:18px 16px}
+  .contact-i-val{font-size:14px}
+  .contact-socials{flex-wrap:wrap;gap:12px}
+  .policy-item{font-size:13px;padding-left:18px}
+  .verify-btn{padding:13px 20px}
+  .contact-page-wrap{padding:132px 20px 40px}
+  .contact-page-title{font-size:38px}
+  .contact-page-sub{font-size:13px}
+  .contact-stat-grid,.c-form-r{grid-template-columns:1fr}
+  .contact-form-title{font-size:30px}
+}
+
+@media(max-width:420px){
+  .hero-h1{font-size:34px}
+  .hero-eyebrow,.sec-eyebrow,.feat-info .feat-eyebrow{letter-spacing:3px}
+  .btn-pri,.btn-sec{padding:14px 18px;letter-spacing:2px}
+  .hero-stats{flex-direction:row;align-items:flex-start;justify-content:space-between;flex-wrap:nowrap;gap:10px}
+  .hero-stats > div{flex:1 1 0;min-width:0}
+  .hero-right{padding:0 12px 40px}
+  .floating-shoe-container{height:220px}
+  .info-tag.it1{position:relative;left:auto;bottom:auto;margin-top:18px}
+  .feat-title,.sec-title,.chk-title{font-size:30px}
+  .feat-price-big,.chk-total{font-size:28px}
+  .feat-shoe-frame{padding:14px;clip-path:none}
+  .f-btn{flex-basis:100%}
+  .prod-name{font-size:19px}
+  .cart-item{align-items:flex-start}
+  .ci-img{width:52px;height:52px;font-size:24px}
+  .auth-title{font-size:30px}
+  .auth-sub{margin-bottom:24px}
+  .admin-logo-text{font-size:18px}
+  .admin-nav-item{padding:10px 12px}
+  .pdp-price{font-size:28px}
+  .pdp-orig-price{font-size:16px}
+  #page-orders h1{font-size:32px !important}
+  .success-meta{flex-direction:column}
+  .qr-container{width:170px;height:170px}
+  @keyframes qrScan {
+    0% { top: 10px; }
+    100% { top: 160px; }
+  }
 }
 </style>
 </head>
@@ -821,7 +1068,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
     <div class="crop-logo-box" style="width: 65px; height: 65px;">
       <img src="logo.png" alt="Shu Designer Logo">
     </div>
-    <div>
+    <div class="nav-logo-copy">
       <div class="nav-logo-text">SHU DESIGNER</div>
       <div class="nav-logo-sub">Leather Goods</div>
     </div>
@@ -832,6 +1079,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
     <li><a href="#" onclick="showPage('home');scrollToSection('products')">Shop</a></li>
     <li><a href="#" onclick="showPage('home');scrollToSection('collections')">Collections</a></li>
     <li><a href="#" onclick="showPage('home');scrollToSection('process')">Craft</a></li>
+    <li class="mobile-menu-item" id="ordersNavBtn" style="display:none"><a href="#" onclick="showPage('orders');toggleMobileMenu()">My Orders</a></li>
   </ul>
   
   <div class="nav-right">
@@ -845,7 +1093,6 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
         <span class="cart-text">Wishlist</span> 
         <span class="cart-bubble" id="wishlistCount">0</span>
     </button>
-    <button class="nav-btn" id="ordersNavBtn" onclick="showPage('orders')" style="display:none"><span class="auth-text">My Orders</span></button>
     <button class="nav-btn" id="authNavBtn" onclick="showPage('auth')"><span class="auth-text">Sign In</span></button>
     <button class="nav-btn gold" id="adminNavBtn" style="display:none" onclick="showPage('admin')"><span class="auth-text">Admin</span></button>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" onclick="toggleMobileMenu()">
@@ -953,12 +1200,14 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <div class="feat-ring"></div>
           <div class="feat-ring"></div>
         </div>
-        <div class="feat-shoe-anim">🥿</div>
+        <div class="feat-shoe-frame">
+          <img src="newarrival.png" class="feat-shoe-anim" alt="New arrival handcrafted leather shoe">
+        </div>
         <div class="price-float">₹16,999</div>
       </div>
       <div class="feat-info rv">
-        <div class="feat-eyebrow">Editor's Pick · Limited Edition</div>
-        <div class="feat-title">The Firenze<br><em>Derby Brogue</em></div>
+        <div class="feat-eyebrow">New Arrival · Limited Drop</div>
+        <div class="feat-title">The Firenze<br><em>New Arrival</em></div>
         <div class="feat-price-big">₹16,999</div>
         <p class="feat-desc">A masterpiece of traditional Italian shoemaking. Burnished full-grain calf leather upper, hand-welted Goodyear construction, and 48 hours of expert finishing. Only 50 pairs crafted per season — each signed by the artisan.</p>
         <div class="feat-meta">
@@ -1148,9 +1397,9 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
       <div>
         <div class="foot-col-title">Shop</div>
         <ul class="foot-links">
-          <li><a href="#">Men's Collection</a></li>
-          <li><a href="#">Women's Collection</a></li>
-          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#" onclick="openMensCollection(); return false;">Men's Collection</a></li>
+          <li><a href="#" onclick="openWomensCollection(); return false;">Women's Collection</a></li>
+          <li><a href="#" onclick="openNewArrivals(); return false;">New Arrivals</a></li>
         </ul>
       </div>
       <div>
@@ -1160,7 +1409,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <li><a href="#" onclick="showPolicyPopup('shipping'); return false;">Shipping Info</a></li>
           <li><a href="#" onclick="showPolicyPopup('return'); return false;">Return Policy</a></li>
           <li><a href="#" onclick="showPolicyPopup('leatherCare'); return false;">Leather Care</a></li>
-          <li><a href="#" onclick="openPolicy('contact'); return false;">Contact Us</a></li>
+          <li><a href="#" onclick="showPage('contact'); return false;">Contact Us</a></li>
         </ul>
       </div>
       <div>
@@ -1269,6 +1518,126 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 
           <div style="margin-top:24px;text-align:center">
             <a onclick="showPage('home')" style="color:var(--muted);font-size:12px;text-decoration:none;letter-spacing:1px">← Back to Store</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ======== CONTACT PAGE ======== -->
+<div class="page" id="page-contact">
+  <div class="contact-page-wrap">
+    <div class="contact-page-shell">
+      <div class="contact-page-hero">
+        <div>
+          <div class="sec-eyebrow">Get In Touch</div>
+          <div class="contact-page-title">Contact <em style="color:var(--gold);font-style:italic">Shu Designer</em></div>
+        </div>
+        <div>
+          <div class="contact-page-sub">Reach our team for order support, exchange requests, leather care advice, wholesale inquiries, or general feedback. Share your details and we will get back to you quickly.</div>
+          <div style="margin-top:18px">
+            <button class="nav-btn" onclick="showPage('home')">← Back to Store</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-page-grid">
+        <div class="contact-panel">
+          <div class="contact-i-group">
+            <div class="contact-i-label">Customer Care</div>
+            <div class="contact-i-val">+91 98400 12345</div>
+            <div class="contact-i-sub">Call or WhatsApp us Monday to Saturday, 10:00 AM to 6:00 PM IST.</div>
+          </div>
+          <div class="contact-i-group">
+            <div class="contact-i-label">Email Support</div>
+            <div class="contact-i-val">support@shudesigner.in</div>
+            <div class="contact-i-sub">Best for order updates, returns, size help, and product questions.</div>
+          </div>
+          <div class="contact-i-group">
+            <div class="contact-i-label">Workshop Address</div>
+            <div class="contact-i-val">Shu Designer Leather Goods<br>12/4 Leather Complex Road, Chennai<br>Tamil Nadu 600044, India</div>
+            <div class="contact-i-sub">Visits by appointment for private fittings and business meetings.</div>
+          </div>
+          <div class="contact-i-group">
+            <div class="contact-i-label">Business Credentials</div>
+            <div class="contact-i-sub">Founder: Mr. Arvind Kumar</div>
+            <div class="contact-i-sub">Customer Relations Head: Ms. Priya Menon</div>
+            <div class="contact-i-sub">Service Languages: English, Tamil, Hindi</div>
+          </div>
+
+          <div class="contact-stat-grid">
+            <div class="contact-stat">
+              <div class="contact-stat-k">24h</div>
+              <div class="contact-stat-l">Avg. Reply Window</div>
+            </div>
+            <div class="contact-stat">
+              <div class="contact-stat-k">98%</div>
+              <div class="contact-stat-l">Support Satisfaction</div>
+            </div>
+            <div class="contact-stat">
+              <div class="contact-stat-k">6 Days</div>
+              <div class="contact-stat-l">Weekly Availability</div>
+            </div>
+            <div class="contact-stat">
+              <div class="contact-stat-k">1:1</div>
+              <div class="contact-stat-l">Order Assistance</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-panel contact-form-card">
+          <div class="contact-form-title">Tell us how we can help</div>
+          <div class="contact-form-sub">Please enter your essential details so our support team can contact you with the right response. Use this form for support, complaints, feedback, bulk orders, or partnership requests.</div>
+          <div class="contact-form">
+            <div class="c-form-r">
+              <div class="c-form-g">
+                <label class="contact-i-label">Customer Name</label>
+                <input type="text" class="c-input" id="pcName" placeholder="Enter your full name">
+              </div>
+              <div class="c-form-g">
+                <label class="contact-i-label">Phone Number</label>
+                <input type="tel" class="c-input" id="pcPhone" placeholder="+91 98765 43210">
+              </div>
+            </div>
+            <div class="c-form-r">
+              <div class="c-form-g">
+                <label class="contact-i-label">Email Address</label>
+                <input type="email" class="c-input" id="pcEmail" placeholder="you@example.com">
+              </div>
+              <div class="c-form-g">
+                <label class="contact-i-label">City / Location</label>
+                <input type="text" class="c-input" id="pcCity" placeholder="Chennai">
+              </div>
+            </div>
+            <div class="c-form-r">
+              <div class="c-form-g">
+                <label class="contact-i-label">Inquiry Type</label>
+                <select class="c-select" id="pcType">
+                  <option>Order Support</option>
+                  <option>Exchange / Return</option>
+                  <option>Product Feedback</option>
+                  <option>Bulk / Wholesale</option>
+                  <option>Partnership</option>
+                  <option>General Contact</option>
+                </select>
+              </div>
+              <div class="c-form-g">
+                <label class="contact-i-label">Order ID / Reference</label>
+                <input type="text" class="c-input" id="pcOrder" placeholder="Optional">
+              </div>
+            </div>
+            <div class="c-form-g">
+              <label class="contact-i-label">Subject</label>
+              <input type="text" class="c-input" id="pcSubject" placeholder="Short summary of your request">
+            </div>
+            <div class="c-form-g">
+              <label class="contact-i-label">Feedback / Message</label>
+              <textarea class="c-ta" id="pcMsg" placeholder="Write your message, feedback, issue, or business requirement here"></textarea>
+            </div>
+            <button class="c-submit" onclick="submitContactForm('page')">Submit Contact Request</button>
+            <div class="c-guarantee">Your details are used only for customer support and follow-up communication.</div>
+            <div class="contact-note">Need urgent help? Call us directly on +91 98400 12345 or send an email to support@shudesigner.in.</div>
           </div>
         </div>
       </div>
@@ -2041,6 +2410,8 @@ let currentUser = null;
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
+  const searchStrip = document.getElementById('searchStrip');
+  if (searchStrip) searchStrip.classList.toggle('hidden', page !== 'home');
   window.scrollTo(0, 0);
   if (page === 'admin') renderAdminProducts();
   if (page === 'home') setTimeout(initReveal, 100);
@@ -2100,7 +2471,7 @@ function renderProducts(filter = 'all', searchResults = null) {
             <div class="prod-price">₹${p.price.toLocaleString('en-IN')}</div>
             ${p.origPrice ? `<div style="font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px">₹${p.origPrice.toLocaleString('en-IN')}</div>` : ''}
           </div>
-          <div class="swatches">${p.colors.map((c, i) => `<div class="sw${i===0?' on':''}" style="background:${c}" onclick="event.stopPropagation(); this.parentElement.querySelectorAll('.sw').forEach(s=>s.classList.remove('on'));this.classList.add('on')"></div>`).join('')}</div>
+          <div class="swatches">${p.colors.map((c, i) => `<div class="sw${i===0?' on':''}" title="${p.colorNames?.[i] || 'Color option'}" style="background:${c}" onclick="event.stopPropagation(); showProductDetails(${p.id}, '${p.colorNames?.[i] || ''}')"></div>`).join('')}</div>
         </div>
       </div>
     </div>
@@ -2166,9 +2537,77 @@ function filterFromCollection(category) {
   }, 150);
 }
 
+function openMensCollection() {
+  showPage('home');
+  setTimeout(() => {
+    const mensProducts = products.filter(p => ['oxford', 'derby', 'boot', 'loafer'].includes(p.category));
+    renderProducts('all', mensProducts);
+    document.querySelectorAll('.f-btn').forEach(btn => btn.classList.remove('on'));
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 150);
+}
+
+function openWomensCollection() {
+  showPage('home');
+  setTimeout(() => {
+    const womensProducts = products.filter(p => p.category === 'sandal');
+    renderProducts('all', womensProducts);
+    document.querySelectorAll('.f-btn').forEach(btn => btn.classList.remove('on'));
+    const productsSection = document.getElementById('products');
+    if (productsSection) {
+      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 150);
+}
+
+function openNewArrivals() {
+  showPage('home');
+  setTimeout(() => {
+    const featuredSection = document.getElementById('featured');
+    if (featuredSection) {
+      featuredSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, 150);
+}
+
 function selSize(btn) {
   btn.closest('.feat-sizes').querySelectorAll('.size-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
+}
+
+function getCategoryProducts(category) {
+  return products.filter(p => p.category === category);
+}
+
+function getColorOptions(product) {
+  const colorMap = new Map();
+  getCategoryProducts(product.category).forEach(item => {
+    (item.colorNames || []).forEach((name, index) => {
+      const key = String(name).toLowerCase();
+      if (!colorMap.has(key)) {
+        colorMap.set(key, {
+          name,
+          hex: item.colors?.[index] || item.colors?.[0] || '#1A1208'
+        });
+      }
+    });
+  });
+  return Array.from(colorMap.values());
+}
+
+function findVariantForColor(product, colorName) {
+  if (!colorName) return product;
+  const key = String(colorName).toLowerCase();
+  return getCategoryProducts(product.category).find(item =>
+    (item.colorNames || []).some(name => String(name).toLowerCase() === key)
+  ) || null;
+}
+
+function getRelatedColorShoes(product, excludeId) {
+  return getCategoryProducts(product.category).filter(item => item.id !== excludeId).slice(0, 3);
 }
 
 // ===================== CART =====================
@@ -2305,32 +2744,60 @@ let savedAddresses = [
 ];
 let selectedAddressId = null;
 
-function showProductDetails(id) {
-  const p = products.find(x => x.id === id);
-  if (!p) return;
+function showProductDetails(id, selectedColorName = '') {
+  const baseProduct = products.find(x => x.id === id);
+  if (!baseProduct) return;
+  const selectedVariant = findVariantForColor(baseProduct, selectedColorName);
+  const displayProduct = selectedVariant || baseProduct;
+  const p = displayProduct;
+  const colorOptions = getColorOptions(baseProduct);
+  const activeColor = selectedColorName || displayProduct.colorNames?.[0] || '';
+  const isColorAvailable = !selectedColorName || !!selectedVariant;
+  const relatedShoes = getRelatedColorShoes(displayProduct, displayProduct.id);
   const container = document.getElementById('pdpContainer');
-  let sizeHtml = p.sizes.map((s,i) => `<button class="size-btn ${i===0?'sel':''}" onclick="selSize(this)">${s}</button>`).join('');
-  let colorHtml = p.colors.map((c,i) => `<div class="sw ${i===0?'on':''}" style="background:${c}" onclick="this.parentElement.querySelectorAll('.sw').forEach(x=>x.classList.remove('on'));this.classList.add('on')"></div>`).join('');
+  let sizeHtml = displayProduct.sizes.map((s,i) => `<button class="size-btn ${i===0?'sel':''}" onclick="selSize(this)">${s}</button>`).join('');
+  let colorHtml = colorOptions.map(option => `<div class="sw ${option.name.toLowerCase() === String(activeColor).toLowerCase() ? 'on' : ''}" title="${option.name}" style="background:${option.hex}" onclick="showProductDetails(${baseProduct.id}, '${option.name}')"></div>`).join('');
+  const colorStatusHtml = selectedColorName
+    ? (isColorAvailable
+        ? `<div class="color-status"><strong>${displayProduct.name}</strong> is available in <strong>${selectedColorName}</strong>. Showing the closest matching shoe now.</div>`
+        : `<div class="color-status"><strong>${selectedColorName}</strong> is <strong>available soon</strong> for this style. You can explore these related color shoes below.</div>`)
+    : '';
+  const relatedShoesHtml = (!isColorAvailable && relatedShoes.length) ? `
+      <div class="related-color-wrap">
+        <div class="related-color-title">Related Color Shoes</div>
+        <div class="related-color-grid">
+          ${relatedShoes.map(item => `
+            <div class="related-color-card" onclick="showProductDetails(${item.id}, '${item.colorNames?.[0] || ''}')">
+              ${item.image ? `<img src="${item.image}" alt="${item.name}">` : ''}
+              <div class="related-color-name">${item.name}</div>
+              <div class="related-color-meta">${(item.colorNames || []).join(' • ')}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    ` : '';
   
   container.innerHTML = `
     <div class="pdp-left">
-      ${p.image ? `<img src="${p.image}" alt="${p.name}" class="pdp-photo">` : `<div class="pdp-shoe-anim">${p.emoji}</div>`}
-      ${p.stock < 10 ? `<div style="position:absolute;top:40px;right:40px;background:var(--gold);color:var(--ink);padding:6px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase">Only ${p.stock} left</div>` : ''}
+      ${displayProduct.image ? `<img src="${displayProduct.image}" alt="${displayProduct.name}" class="pdp-photo">` : `<div class="pdp-shoe-anim">${displayProduct.emoji}</div>`}
+      ${displayProduct.stock < 10 ? `<div style="position:absolute;top:40px;right:40px;background:var(--gold);color:var(--ink);padding:6px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase">Only ${displayProduct.stock} left</div>` : ''}
     </div>
     <div class="pdp-right">
-      <div class="pdp-brand">${p.brand}</div>
-      <div class="pdp-title">${p.name}</div>
+      <div class="pdp-brand">${displayProduct.brand}</div>
+      <div class="pdp-title">${displayProduct.name}</div>
       <div class="pdp-price">
         ₹${p.price.toLocaleString('en-IN')}
         ${p.origPrice ? `<div class="pdp-orig-price">₹${p.origPrice.toLocaleString('en-IN')}</div>` : ''}
       </div>
-      <div class="pdp-desc">${p.shortDesc} <br><br> Handcrafted using the finest materials. Genuine leather upper, breathable lining, and custom-welted sole for superior durability. Ships securely packaged within 24 hours.</div>
+      <div class="pdp-desc">${displayProduct.shortDesc} <br><br> Handcrafted using the finest materials. Genuine leather upper, breathable lining, and custom-welted sole for superior durability. Ships securely packaged within 24 hours.</div>
       
       <div class="pdp-section-l">Select Size</div>
       <div class="feat-sizes">${sizeHtml}</div>
       
       <div class="pdp-section-l">Select Color</div>
-      <div class="swatches" style="margin-bottom:44px">${colorHtml}</div>
+      <div class="swatches" style="margin-bottom:18px">${colorHtml}</div>
+      ${colorStatusHtml}
+      ${relatedShoesHtml}
       
       <div style="display:flex;gap:14px">
         <button class="btn-pri" style="flex:1" onclick="addToCart({id:${p.id}, name:'${p.name}',price:${p.price},emoji:'${p.emoji}'})">Add to Cart</button>
@@ -3135,16 +3602,36 @@ function showAuthPage() {
   }
 }
 
+function normalizeEmailSuggestion(rawEmail) {
+  const email = rawEmail.trim();
+  if (!email) return { email, suggestion: null };
+  const lower = email.toLowerCase();
+  if (lower.endsWith('@gmail')) {
+    return { email, suggestion: email + '.com' };
+  }
+  if (lower.includes('@gmail.') || lower.endsWith('@gmail.com')) {
+    return { email, suggestion: null };
+  }
+  return { email, suggestion: null };
+}
+
 function doLogin() {
-  const email = document.getElementById('loginEmail').value.trim();
+  const emailInput = document.getElementById('loginEmail');
+  const { email, suggestion } = normalizeEmailSuggestion(emailInput.value);
   const pass = document.getElementById('loginPass').value;
+  if (suggestion) {
+    emailInput.value = suggestion;
+    showToast('Please use ' + suggestion);
+    emailInput.focus();
+    return;
+  }
   if (!email || !pass) { showToast('Please fill all fields'); return; }
   isLoggedIn = true;
   currentUser = { name: email.split('@')[0], email };
   const authBtn = document.getElementById('authNavBtn');
   authBtn.innerHTML = `<span class="auth-text">${currentUser.name}</span>`;
   authBtn.onclick = () => showPage('auth');
-  document.getElementById('ordersNavBtn').style.display = 'inline-block';
+  document.getElementById('ordersNavBtn').style.display = 'block';
   renderOrders();
   showPage('home');
   showToast('Welcome back! Signed in successfully ✓');
@@ -3155,10 +3642,17 @@ function doLogin() {
 function doRegister() {
   const first = document.getElementById('regFirst').value.trim();
   const last = document.getElementById('regLast').value.trim();
-  const email = document.getElementById('regEmail').value.trim();
+  const emailInput = document.getElementById('regEmail');
+  const { email, suggestion } = normalizeEmailSuggestion(emailInput.value);
   const phone = document.getElementById('regPhone').value.trim();
   const pass = document.getElementById('regPass').value;
   const pass2 = document.getElementById('regPass2').value;
+  if (suggestion) {
+    emailInput.value = suggestion;
+    showToast('Please use ' + suggestion);
+    emailInput.focus();
+    return;
+  }
   if (!first || !email || !pass) { showToast('Please fill all required fields'); return; }
   if (pass !== pass2) { showToast('Passwords do not match'); return; }
   isLoggedIn = true;
@@ -3166,7 +3660,7 @@ function doRegister() {
   const authBtn = document.getElementById('authNavBtn');
   authBtn.innerHTML = `<span class="auth-text">${first}</span>`;
   authBtn.onclick = () => showPage('auth');
-  document.getElementById('ordersNavBtn').style.display = 'inline-block';
+  document.getElementById('ordersNavBtn').style.display = 'block';
   renderOrders();
   showPage('home');
   showToast('Account created! Welcome to Shu Designer, ' + first + ' 🎉');
@@ -3181,6 +3675,7 @@ function doAdminLogin() {
   const authBtn = document.getElementById('authNavBtn');
   authBtn.innerHTML = `<span class="auth-text">Home</span>`;
   authBtn.onclick = () => showPage('home');
+  document.getElementById('ordersNavBtn').style.display = 'block';
   document.getElementById('adminNavBtn').style.display = 'inline-block';
   document.getElementById('adminName').textContent = 'Admin';
   showPage('admin');
@@ -3366,14 +3861,34 @@ function closePolicyPopup() {
   setTimeout(() => { popup.style.display = ''; }, 320);
 }
 
-function submitContactForm() {
-  const name = document.getElementById('cName').value;
-  if(!name) { showToast('Please enter your name'); return; }
-  showToast('✓ Message sent! We will contact you back shortly.');
-  closePolicy('contact');
-  document.getElementById('cName').value='';
-  document.getElementById('cEmail').value='';
-  document.getElementById('cMsg').value='';
+function submitContactForm(source = 'modal') {
+  const isPage = source === 'page';
+  const ids = isPage
+    ? { name: 'pcName', phone: 'pcPhone', email: 'pcEmail', message: 'pcMsg', extra: ['pcCity', 'pcOrder', 'pcSubject'] }
+    : { name: 'cName', phone: 'cOrder', email: 'cEmail', message: 'cMsg', extra: ['cType', 'cOrder'] };
+
+  const nameEl = document.getElementById(ids.name);
+  const phoneEl = document.getElementById(ids.phone);
+  const emailEl = document.getElementById(ids.email);
+  const messageEl = document.getElementById(ids.message);
+
+  const name = nameEl ? nameEl.value.trim() : '';
+  const phone = phoneEl ? phoneEl.value.trim() : '';
+  const email = emailEl ? emailEl.value.trim() : '';
+  const message = messageEl ? messageEl.value.trim() : '';
+
+  if (!name) { showToast('Please enter your name'); return; }
+  if (!phone && !email) { showToast('Please enter phone or email'); return; }
+  if (!message) { showToast('Please enter your message'); return; }
+
+  showToast('Your contact request has been sent successfully');
+
+  [ids.name, ids.phone, ids.email, ids.message, ...ids.extra].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = '';
+  });
+
+  if (!isPage) closePolicy('contact');
 }
 
 // ===================== CURSOR =====================
