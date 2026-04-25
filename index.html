@@ -56,7 +56,7 @@ button,a{cursor:none}
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;height:90px;padding:0 60px;display:flex;align-items:center;justify-content:space-between;gap:18px;transition:all 0.4s}
 nav.stuck{background:rgba(13,11,8,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0;flex:0 1 auto}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0;flex:0 1 auto;transform:translateY(-10%);transition:transform 0.25s ease}
 .nav-logo .crop-logo-box{width:65px !important;height:65px !important}
 .nav-logo-shoe{font-size:28px;animation:logoFloat 3s ease-in-out infinite}
 @keyframes logoFloat{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-6px) rotate(5deg)}}
