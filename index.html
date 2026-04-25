@@ -22,7 +22,7 @@ button,a{cursor:none}
 ::-moz-selection{background:var(--gold);color:var(--cream)}
 /* CROPPED LOGO */
 :root {
-  --logo-zoom: 1.3;
+  --logo-zoom: 1.0;
   --logo-y: 50%;
 }
 .crop-logo-box {
@@ -170,6 +170,17 @@ nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
 @keyframes ringPulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:0.1;transform:scale(1.05)}}
 .price-float{position:absolute;background:var(--gold);color:var(--ink);padding:12px 20px;font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;bottom:60px;left:-20px;animation:tagFloat1 2.8s ease-in-out infinite;clip-path:polygon(0 0,calc(100%-8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100%-8px))}
 .price-float::before{content:'Starting';display:block;font-family:'DM Sans',sans-serif;font-size:9px;font-weight:500;letter-spacing:2px;text-transform:uppercase;opacity:0.6;margin-bottom:2px}
+.price-simple{display:flex;flex-direction:column;gap:6px}
+.price-simple .price-current{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:28px;font-weight:700}
+.price-simple .price-old{font-size:11px;color:var(--muted);text-decoration:line-through}
+  .feat-price-simple{margin-top:18px;display:none}
+  /* Static new-arrival price (not controlled by JS) */
+  .feat-new-price{margin-top:12px}
+  .feat-new-price .price-current{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:36px;font-weight:700;line-height:1}
+  .feat-new-price .price-old{font-size:12px;color:var(--muted);text-decoration:line-through;margin-top:6px}
+  .feat-price-simple .price-current{font-family:'Cormorant Garamond',serif;color:var(--gold);font-size:36px;font-weight:700;line-height:1}
+  .feat-price-simple .price-old{font-size:12px;color:var(--muted);text-decoration:line-through;margin-top:4px}
+.price-contact{font-size:12px;color:var(--muted);font-weight:500}
 .feat-info .feat-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:10px}
 .feat-info .feat-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold)}
 .feat-title{font-family:'Cormorant Garamond',serif;font-size:58px;color:var(--cream);font-weight:300;line-height:1.05;margin-bottom:12px}
@@ -194,7 +205,7 @@ nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
 .filter-wrap{display:flex;gap:8px;margin-bottom:44px;flex-wrap:wrap}
 .f-btn{background:transparent;border:1px solid var(--border);color:var(--muted);padding:8px 22px;font-size:10px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;transition:all 0.3s}
 .f-btn:hover,.f-btn.on{border-color:var(--gold);color:var(--gold);background:rgba(200,151,58,0.07)}
-.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
 .prod-card{background:var(--card);position:relative;overflow:hidden;transition:transform 0.3s}
 .prod-card:hover{transform:translateY(-4px)}
 .prod-card:hover .prod-overlay{opacity:1}
@@ -284,6 +295,7 @@ nav.stuck + .search-strip{background:rgba(18,15,10,0.95)}
 .nl-go:hover{background:#1a1610}
 
 /* FOOTER */
+.footer{ }
 footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
 .foot-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;margin-bottom:56px}
 .foot-logo{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold);letter-spacing:5px;margin-bottom:14px}
@@ -981,6 +993,50 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
     100% { top: 160px; }
   }
 }
+
+/* Additional responsive adjustments */
+
+@media (max-width:1100px){
+  nav{height:76px;padding:0 28px}
+  .nav-logo .crop-logo-box{width:56px;height:56px}
+  .nav-logo-text{font-size:20px}
+  .nav-search{width:60%;max-width:260px}
+  .hero-left{padding:120px 36px 60px 36px}
+  .hero-h1{font-size:64px}
+  .hero-p{max-width:320px}
+  .feat-grid,.hero{grid-template-columns:1fr 1fr}
+}
+
+@media (max-width:900px){
+  .nav-links{display:none}
+  .nav-right{margin-left:0}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:80px 22px 40px}
+  .hero-h1{font-size:42px}
+  .hero-right{order:2;padding:20px}
+  .floating-shoe-container{width:320px;height:260px;margin:24px auto}
+  .feat-grid{grid-template-columns:1fr}
+  .feat-shoe-stage{height:auto}
+  .prod-grid{gap:12px}
+  .prod-img{height:220px}
+}
+
+@media (max-width:600px){
+  nav{height:64px;padding:0 14px}
+  .nav-logo .crop-logo-box{width:48px;height:48px}
+  .nav-logo-text{font-size:16px}
+  .hero-left{padding:56px 14px 36px}
+  .hero-h1{font-size:34px}
+  .hero-p{max-width:100%}
+  .btn-pri,.btn-sec{padding:12px 16px}
+  .prod-img{height:180px}
+  .prod-body{padding:12px}
+  .prod-name{font-size:18px}
+  .prod-price{font-size:20px}
+  .feat-title{font-size:28px}
+}
+
+/* WhatsApp styles moved to bottom of file to avoid duplicates. */
 </style>
 </head>
 <body>
@@ -1117,20 +1173,20 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
   <!-- HERO -->
   <section class="hero" id="home">
     <div class="hero-left">
-      <div class="hero-eyebrow rv">New Collection · SS 2026</div>
+      <div class="hero-eyebrow rv">New Collection · 2026</div>
       <h1 class="hero-h1 rv d1">
-        <em>Artisan</em>
-        <b>Leather</b>
-        Mastery
+        <em>Premium</em>
+        <b>Mens'</b>
+        Genuine Leather Shoes
       </h1>
-      <p class="hero-p rv d2">Every pair is handstitched by master cobblers using full-grain Italian leather sourced from certified tanneries. Shoes that tell a story with every step you take.</p>
+      <p class="hero-p rv d2">Handcrafted using full-grain genuine leather sourced from certified tanneries. Shoes that tell a story with every step you take.</p>
       <div class="hero-cta rv d3">
         <button class="btn-pri" onclick="scrollToSection('products')">Explore Collection</button>
         <button class="btn-sec" onclick="showPage('auth')">Join the Craft</button>
       </div>
       <div class="hero-stats rv d4">
-        <div><div class="stat-n">12+</div><div class="stat-l">Years of craft</div></div>
-        <div><div class="stat-n">4K+</div><div class="stat-l">Happy soles</div></div>
+        <div><div class="stat-n">8+</div><div class="stat-l">Years of craft</div></div>
+        <div><div class="stat-n">5K+</div><div class="stat-l">Produced pairs</div></div>
         <div><div class="stat-n">100%</div><div class="stat-l">Genuine leather</div></div>
       </div>
     </div>
@@ -1153,7 +1209,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <img src="sandal.png" class="hero-img" alt="Premium Shoe 12">
           <img src="sandal1.png" class="hero-img" alt="Premium Shoe 13">
           <img src="sandal2.png" class="hero-img" alt="Premium Shoe 14">
-          <div class="shoe-badge"><span>SS</span>2026</div>
+          <div class="shoe-badge"><span>SH</span>2026</div>
         </div>
         <div class="info-tag it1">
           <div class="it-label">Material</div>
@@ -1175,19 +1231,17 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
   <div class="marquee-strip">
     <div class="marquee-inner" id="marqInner">
       <div class="mq-item">Handcrafted in India<span class="mq-dot"></span></div>
-      <div class="mq-item">Full-Grain Leather<span class="mq-dot"></span></div>
-      <div class="mq-item">Free Shipping above ₹5000<span class="mq-dot"></span></div>
+      <div class="mq-item">Genuine Leather<span class="mq-dot"></span></div>
       <div class="mq-item">30 Day Returns<span class="mq-dot"></span></div>
-      <div class="mq-item">Razorpay Secured<span class="mq-dot"></span></div>
       <div class="mq-item">COD Available<span class="mq-dot"></span></div>
-      <div class="mq-item">Authenticity Certificate<span class="mq-dot"></span></div>
+      <div class="mq-item">Made in India<span class="mq-dot"></span></div>
+      <div class="mq-item">Premium Quality<span class="mq-dot"></span></div>
       <div class="mq-item">Handcrafted in India<span class="mq-dot"></span></div>
-      <div class="mq-item">Full-Grain Leather<span class="mq-dot"></span></div>
-      <div class="mq-item">Free Shipping above ₹5000<span class="mq-dot"></span></div>
+      <div class="mq-item">Genuine Leather<span class="mq-dot"></span></div>
       <div class="mq-item">30 Day Returns<span class="mq-dot"></span></div>
-      <div class="mq-item">Razorpay Secured<span class="mq-dot"></span></div>
       <div class="mq-item">COD Available<span class="mq-dot"></span></div>
-      <div class="mq-item">Authenticity Certificate<span class="mq-dot"></span></div>
+      <div class="mq-item">Made in India<span class="mq-dot"></span></div>
+      <div class="mq-item">Premium Quality<span class="mq-dot"></span></div>
     </div>
   </div>
 
@@ -1200,35 +1254,26 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <div class="feat-ring"></div>
           <div class="feat-ring"></div>
         </div>
-        <div class="feat-shoe-frame">
+        <div class="feat-shoe-frame" style="cursor:pointer" onclick="openFeaturedPDP()">
           <img src="newarrival.png" class="feat-shoe-anim" alt="New arrival handcrafted leather shoe">
         </div>
-        <div class="price-float">₹16,999</div>
       </div>
       <div class="feat-info rv">
-        <div class="feat-eyebrow">New Arrival · Limited Drop</div>
-        <div class="feat-title">The Firenze<br><em>New Arrival</em></div>
-        <div class="feat-price-big">₹16,999</div>
-        <p class="feat-desc">A masterpiece of traditional Italian shoemaking. Burnished full-grain calf leather upper, hand-welted Goodyear construction, and 48 hours of expert finishing. Only 50 pairs crafted per season — each signed by the artisan.</p>
+        <div class="feat-eyebrow">New Arrival</div>
+        <div class="feat-title">Premium Mens'<br><em>Genuine Leather Shoes</em></div>
+        <div class="feat-new-price" aria-hidden="true">
+          <div class="price-current">₹12,699</div>
+          <div class="price-old">₹14,999</div>
+        </div>
         <div class="feat-meta">
-          <div class="feat-meta-item"><div class="fmi-l">Material</div><div class="fmi-v">Burnished Calf Leather</div></div>
-          <div class="feat-meta-item"><div class="fmi-l">Sole</div><div class="fmi-v">Full Leather</div></div>
-          <div class="feat-meta-item"><div class="fmi-l">Origin</div><div class="fmi-v">Chennai, India</div></div>
-          <div class="feat-meta-item"><div class="fmi-l">Edition</div><div class="fmi-v">50 Pairs Only</div></div>
+          <div class="feat-meta-item"><div class="fmi-l">Material</div><div class="fmi-v">Genuine Leather</div></div>
+          <div class="feat-meta-item"><div class="fmi-l">Origin</div><div class="fmi-v">India</div></div>
+          <div class="feat-meta-item"><div class="fmi-l">Craft</div><div class="fmi-v">8+ Years</div></div>
         </div>
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Select Size</div>
-        <div class="feat-sizes">
-          <button class="size-btn" onclick="selSize(this)">6</button>
-          <button class="size-btn sel" onclick="selSize(this)">7</button>
-          <button class="size-btn" onclick="selSize(this)">8</button>
-          <button class="size-btn" onclick="selSize(this)">9</button>
-          <button class="size-btn" onclick="selSize(this)">10</button>
-          <button class="size-btn" onclick="selSize(this)">11</button>
-          <button class="size-btn" onclick="selSize(this)">12</button>
-        </div>
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Browse Collection</div>
         <div style="display:flex;gap:12px">
-          <button class="btn-pri" onclick="addToCart({id:101, name:'Firenze Derby Brogue',price:16999,emoji:'🥿'})">Add to Cart</button>
-          <button class="btn-sec" onclick="buyNow(101)">Buy Now</button>
+          <button class="btn-pri" onclick="scrollToSection('products')">View All Shoes</button>
+          <button class="btn-sec" onclick="showPage('auth')">Join the Craft</button>
         </div>
       </div>
     </div>
@@ -1327,20 +1372,19 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
         </div>
       </div>
       
-      <!-- WOMEN'S -->
-      <div class="coll-card rv d4" onclick="filterFromCollection('oxford')" style="cursor:pointer;">
-
+      <!-- MEN'S SANDALS -->
+      <div class="coll-card rv d4" onclick="filterFromCollection('sandal')" style="cursor:pointer;">
         <div class="coll-inner">
           <div class="coll-front">
-            <img src="loafers.png" class="coll-img" alt="Women's Edit" style="filter:hue-rotate(30deg) brightness(1.2)">
+            <img src="sandal.png" class="coll-img" alt="Men's Sandals">
             <div class="coll-overlay"></div>
-            <div class="coll-name">Women's Edit</div>
-            <div class="coll-count">20 styles</div>
+            <div class="coll-name">Men's Sandals</div>
+            <div class="coll-count">8 styles</div>
           </div>
           <div class="coll-back">
-            <div class="coll-back-title">Women's</div>
-            <p class="coll-back-desc">Exquisite artisan footwear designed for women.</p>
-            <button class="nav-btn gold" onclick="event.stopPropagation(); filterFromCollection('oxford')">View All</button>
+            <div class="coll-back-title">Sandals</div>
+            <p class="coll-back-desc">Comfortable genuine leather sandals for men.</p>
+            <button class="nav-btn gold" onclick="event.stopPropagation(); filterFromCollection('sandal')">View All</button>
           </div>
         </div>
       </div>
@@ -1387,19 +1431,57 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
     </div>
   </div>
 
+  <!-- OWNERS SECTION (unique display) -->
+  <section class="owners-section" style="padding:56px 80px;background:#0b0907;border-top:1px solid rgba(212,175,55,0.04);margin-top:16px">
+    <div style="max-width:1200px;margin:0 auto;display:flex;gap:24px;align-items:stretch;flex-wrap:wrap">
+      <div style="flex:1;min-width:280px;background:linear-gradient(180deg,#0f0d0b,#0b0907);border:1px solid rgba(212,175,55,0.06);padding:22px;border-radius:12px;display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:0 0 92px;display:flex;align-items:center;justify-content:center">
+          <div style="width:76px;height:76px;border-radius:50%;overflow:hidden;border:4px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:center;background:#000"><img src="logo.png" alt="Nihal" style="width:70%;height:70%;object-fit:contain"/></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:18px;margin-bottom:6px"><span id="founderName">Nihal Ahmed N.M.</span></div>
+          <div style="color:var(--cream);font-weight:600;margin-bottom:8px"><span id="founderRole">Owner / Founder</span></div>
+          <div style="color:var(--muted);margin-bottom:10px;line-height:1.6"><span id="founderAddr">Shop: 150/68, V.A.Kareem Road, Near Water Tank, Ambur - 635 802</span></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <a id="founderTelLink" href="tel:+917010262108" style="background:var(--gold);color:var(--ink);padding:10px 12px;border-radius:6px;text-decoration:none;font-weight:700">Call +91 70102 62108</a>
+            <a id="founderWaLink" href="https://wa.me/917010262108" target="_blank" style="background:#25D366;color:#000;padding:10px 12px;border-radius:6px;text-decoration:none;font-weight:700">WhatsApp</a>
+            <a id="founderEmailLink" href="mailto:nmnihal@gmail.com" style="background:transparent;color:var(--gold);padding:10px 12px;border-radius:6px;border:1px solid rgba(212,175,55,0.06);text-decoration:none">Email</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:280px;background:linear-gradient(180deg,#0f0d0b,#0b0907);border:1px solid rgba(212,175,55,0.06);padding:22px;border-radius:12px;display:flex;gap:18px;align-items:flex-start">
+        <div style="flex:0 0 92px;display:flex;align-items:center;justify-content:center">
+          <div style="width:76px;height:76px;border-radius:50%;overflow:hidden;border:4px solid rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:center;background:#000"><img src="logo.png" alt="Fahmeed" style="width:70%;height:70%;object-fit:contain"/></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:18px;margin-bottom:6px"><span id="cofounderName">Fahmeed Ahmed V.</span></div>
+          <div style="color:var(--cream);font-weight:600;margin-bottom:8px"><span id="cofounderRole">Co-Founder / Factory Head</span></div>
+          <div style="color:var(--muted);margin-bottom:10px;line-height:1.6"><span id="cofounderAddr">Factory: Madan Nagar, Thuthipet, Ambur - 635 811</span></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <a id="cofounderTelLink" href="tel:+919944370360" style="background:var(--gold);color:var(--ink);padding:10px 12px;border-radius:6px;text-decoration:none;font-weight:700">Call +91 99443 70360</a>
+            <a id="cofounderWaLink" href="https://wa.me/919944370360" target="_blank" style="background:#25D366;color:#000;padding:10px 12px;border-radius:6px;text-decoration:none;font-weight:700">WhatsApp</a>
+            <a id="cofounderEmailLink" href="mailto:fahmeedahmedv@gmail.com" style="background:transparent;color:var(--gold);padding:10px 12px;border-radius:6px;border:1px solid rgba(212,175,55,0.06);text-decoration:none">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FOOTER -->
   <footer>
     <div class="foot-top">
       <div>
         <div class="foot-logo">SHU DESIGNER</div>
-        <div class="foot-about">Handcrafting premium leather footwear since 2018. Based in Chennai, India. Shipping across India and to 40+ countries worldwide.</div>
+        <div class="foot-about">Premium Men's Genuine Leather Shoes handcrafted since 2016. Based in Ambur, Tamil Nadu, India. Shipping across India.</div>
       </div>
       <div>
         <div class="foot-col-title">Shop</div>
         <ul class="foot-links">
           <li><a href="#" onclick="openMensCollection(); return false;">Men's Collection</a></li>
-          <li><a href="#" onclick="openWomensCollection(); return false;">Women's Collection</a></li>
           <li><a href="#" onclick="openNewArrivals(); return false;">New Arrivals</a></li>
+          <li><a href="#" onclick="return false;">Men's Sandals</a></li>
+          <li><a href="#" onclick="return false;">Wallets &amp; Belts</a></li>
         </ul>
       </div>
       <div>
@@ -1408,7 +1490,6 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <li><a href="#" onclick="showPolicyPopup('refund'); return false;">Refund Policy</a></li>
           <li><a href="#" onclick="showPolicyPopup('shipping'); return false;">Shipping Info</a></li>
           <li><a href="#" onclick="showPolicyPopup('return'); return false;">Return Policy</a></li>
-          <li><a href="#" onclick="showPolicyPopup('leatherCare'); return false;">Leather Care</a></li>
           <li><a href="#" onclick="showPage('contact'); return false;">Contact Us</a></li>
         </ul>
       </div>
@@ -1416,19 +1497,44 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
         <div class="foot-col-title">Company</div>
         <ul class="foot-links">
           <li><a href="#">Our Story</a></li>
-
+          <li><a href="#" onclick="window.open('https://wa.me/917010262108','_blank'); return false;">Customer Care: 7010262108</a></li>
+          <li><a href="#" onclick="openOwnerCard(); return false;">Exclusive Owner Card</a></li>
         </ul>
       </div>
+      <!-- Owners column removed — owners shown in dedicated Owners section below -->
     </div>
     <div class="foot-bottom">
-      <div class="foot-copy">© 2026 Shu Designer Leather Goods. All rights reserved. Open Source — MIT License.</div>
-      <div class="foot-badges">
+      <div style="display:flex;align-items:center;gap:20px;">
+        <div class="foot-copy">© 2026 Shu Designer Leather Goods. All rights reserved. Open Source — MIT License.</div>
+      </div>
+      <div class="foot-badges" style="display:flex;align-items:center;gap:12px">
         <div class="fbadge">SSL Secured</div>
         <div class="fbadge">Razorpay</div>
         <div class="fbadge">Open Source</div>
       </div>
     </div>
+    
   </footer>
+</div>
+
+<!-- OWNER CARD MODAL (sanitized) -->
+<div id="ownerCardOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:1000020;align-items:center;justify-content:center"> 
+  <div id="ownerCard" style="width:min(720px,94%);background:#0f0d0b;color:#fff;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,0.6);overflow:hidden;position:relative;padding:22px;border:1px solid rgba(212,175,55,0.12);margin:20px">
+    <button onclick="closeOwnerCard()" aria-label="Close" style="position:absolute;right:12px;top:12px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:#ff9a3c;width:36px;height:36px;border-radius:50%;cursor:pointer">✕</button>
+    <div style="display:flex;gap:18px;align-items:center;">
+      <div style="flex:0 0 110px;display:flex;align-items:center;justify-content:center">
+        <div style="width:96px;height:96px;border-radius:50%;overflow:hidden;border:4px solid rgba(212,175,55,0.12);display:flex;align-items:center;justify-content:center;background:#000"><img src="logo.png" alt="logo" style="width:80%;height:80%;object-fit:contain"/></div>
+      </div>
+      <div style="flex:1">
+        <div style="font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:18px;letter-spacing:1px;margin-bottom:6px">Contact — Shu Designer</div>
+        <div style="color:var(--cream);margin-bottom:8px">For business or wholesale inquiries, please contact our support team. Personal owner contact details are shown in the Owners section on this page.</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px">
+          <a href="tel:+917010262108" style="background:var(--gold);color:var(--ink);padding:10px 12px;border-radius:6px;text-decoration:none;font-weight:700">Call Customer Care</a>
+          <a href="mailto:support@shudesigner.in" style="background:transparent;color:var(--gold);padding:10px 12px;border-radius:6px;border:1px solid rgba(212,175,55,0.12);text-decoration:none">Email Support</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ======== AUTH PAGE ======== -->
@@ -1478,6 +1584,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
             <div style="text-align:center">
               <div style="font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px">Admin Access</div>
               <button class="nav-btn" style="width:100%" onclick="doAdminLogin()">Login as Admin</button>
+              <div style="font-size:10px;color:var(--muted);margin-top:10px;line-height:1.6">Default admin: admin@shudesigner.com / admin123</div>
             </div>
             <div class="form-note">Don't have an account? <a onclick="switchAuthTab('register')">Create one</a></div>
           </div>
@@ -1546,7 +1653,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
         <div class="contact-panel">
           <div class="contact-i-group">
             <div class="contact-i-label">Customer Care</div>
-            <div class="contact-i-val">+91 98400 12345</div>
+            <div class="contact-i-val">+91 7010262108</div>
             <div class="contact-i-sub">Call or WhatsApp us Monday to Saturday, 10:00 AM to 6:00 PM IST.</div>
           </div>
           <div class="contact-i-group">
@@ -1559,12 +1666,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
             <div class="contact-i-val">Shu Designer Leather Goods<br>12/4 Leather Complex Road, Chennai<br>Tamil Nadu 600044, India</div>
             <div class="contact-i-sub">Visits by appointment for private fittings and business meetings.</div>
           </div>
-          <div class="contact-i-group">
-            <div class="contact-i-label">Business Credentials</div>
-            <div class="contact-i-sub">Founder: Mr. Arvind Kumar</div>
-            <div class="contact-i-sub">Customer Relations Head: Ms. Priya Menon</div>
-            <div class="contact-i-sub">Service Languages: English, Tamil, Hindi</div>
-          </div>
+          <!-- Owner contact details removed from Contact page (shown in Owners section below) -->
 
           <div class="contact-stat-grid">
             <div class="contact-stat">
@@ -1637,7 +1739,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
             </div>
             <button class="c-submit" onclick="submitContactForm('page')">Submit Contact Request</button>
             <div class="c-guarantee">Your details are used only for customer support and follow-up communication.</div>
-            <div class="contact-note">Need urgent help? Call us directly on +91 98400 12345 or send an email to support@shudesigner.in.</div>
+            <div class="contact-note">Need urgent help? Call us directly on +91 7010262108 or send an email to support@shudesigner.in.</div>
           </div>
         </div>
       </div>
@@ -1713,7 +1815,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <div class="admin-form-full">
             <label class="admin-l">Product Images</label>
             <div class="upload-zone" id="uploadZone">
-              <input type="file" accept="image/*" multiple onchange="handleImageUpload(event)"/>
+              <input id="pImages" name="image" type="file" accept="image/jpeg,image/png,image/webp,image/gif" onchange="handleImageUpload(event)"/>
               <div class="upload-icon">🖼️</div>
               <div class="upload-txt">Click to upload or drag & drop photos from your gallery<br><span style="font-size:10px;color:rgba(107,97,85,0.5)">JPG, PNG, WEBP up to 5MB each · Multiple files allowed</span></div>
             </div>
@@ -1834,6 +1936,22 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           <div class="form-g"><label class="admin-l">Store Name</label><input class="admin-i" value="Shu Designer Leather Goods"/></div>
           <div class="form-g"><label class="admin-l">Contact Email</label><input class="admin-i" value="hello@shu designer.in"/></div>
           <div class="form-g"><label class="admin-l">Phone</label><input class="admin-i" value="+91 98765 43210"/></div>
+          <div style="grid-column:1/-1;border-top:1px dashed rgba(212,175,55,0.06);padding-top:12px;margin-top:8px"></div>
+          <div class="form-g"><label class="admin-l">Founder Name</label><input class="admin-i" id="adminFounderName" value="Nihal Ahmed N.M."/></div>
+          <div class="form-g"><label class="admin-l">Founder Role</label><input class="admin-i" id="adminFounderRole" value="Owner / Founder"/></div>
+          <div class="form-g" style="grid-column:1/-1"><label class="admin-l">Founder Address</label><input class="admin-i" id="adminFounderAddr" value="Shop: 150/68, V.A.Kareem Road, Near Water Tank, Ambur - 635 802"/></div>
+          <div class="form-g"><label class="admin-l">Founder Phone (tel)</label><input class="admin-i" id="adminFounderPhone" value="+917010262108"/></div>
+          <div class="form-g"><label class="admin-l">Founder WhatsApp (number)</label><input class="admin-i" id="adminFounderWhats" value="917010262108"/></div>
+          <div class="form-g"><label class="admin-l">Founder Email</label><input class="admin-i" id="adminFounderEmail" value="nmnihal@gmail.com"/></div>
+
+          <div style="grid-column:1/-1;margin-top:6px;border-top:1px dashed rgba(212,175,55,0.06);padding-top:12px"></div>
+          <div class="form-g"><label class="admin-l">Co-Founder Name</label><input class="admin-i" id="adminCofounderName" value="Fahmeed Ahmed V."/></div>
+          <div class="form-g"><label class="admin-l">Co-Founder Role</label><input class="admin-i" id="adminCofounderRole" value="Co-Founder / Factory Head"/></div>
+          <div class="form-g" style="grid-column:1/-1"><label class="admin-l">Co-Founder Address</label><input class="admin-i" id="adminCofounderAddr" value="Factory: Madan Nagar, Thuthipet, Ambur - 635 811"/></div>
+          <div class="form-g"><label class="admin-l">Co-Founder Phone (tel)</label><input class="admin-i" id="adminCofounderPhone" value="+919944370360"/></div>
+          <div class="form-g"><label class="admin-l">Co-Founder WhatsApp (number)</label><input class="admin-i" id="adminCofounderWhats" value="919944370360"/></div>
+          <div class="form-g"><label class="admin-l">Co-Founder Email</label><input class="admin-i" id="adminCofounderEmail" value="fahmeedahmedv@gmail.com"/></div>
+          <div style="grid-column:1/-1"><button class="admin-submit" onclick="saveOwnerDetails()">Save Owner Details</button></div>
           <div class="form-g"><label class="admin-l">GST Number</label><input class="admin-i" placeholder="27ABCDE1234F1Z5"/></div>
           <div class="form-g" style="grid-column:1/-1"><label class="admin-l">Razorpay Key ID</label><input class="admin-i" placeholder="rzp_live_xxxxxxxxxxxxxxxx" type="password"/></div>
           <div class="form-g" style="grid-column:1/-1"><label class="admin-l">Razorpay Key Secret</label><input class="admin-i" placeholder="xxxxxxxxxxxxxxxxxxxxxxxxxx" type="password"/></div>
@@ -2249,24 +2367,13 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
         <ul class="policy-list">
           <li class="policy-item">We partner with trusted courier services to ensure safe and timely delivery.</li>
           <li class="policy-item">Standard shipping: <strong>5–7 business days</strong>.</li>
-          <li class="policy-item">Express shipping: <strong>2–4 business days</strong> (additional charges apply).</li>
         </ul>
       </div>
 
       <div class="policy-sec">
         <div class="policy-sec-title">Shipping Charges</div>
         <ul class="policy-list">
-          <li class="policy-item">Standard shipping is <strong>free</strong> for orders above ₹2,000 (or equivalent).</li>
-          <li class="policy-item">For orders below this amount, a flat shipping fee will be applied at checkout.</li>
-        </ul>
-      </div>
-
-      <div class="policy-sec">
-        <div class="policy-sec-title">International Shipping</div>
-        <ul class="policy-list">
-          <li class="policy-item">Available to select countries.</li>
-          <li class="policy-item">Delivery times vary by destination (usually <strong>7–14 business days</strong>).</li>
-          <li class="policy-item">Customs duties or import taxes are the responsibility of the customer.</li>
+          <li class="policy-item">Basic flat shipping charges will be confirmed at checkout.</li>
         </ul>
       </div>
 
@@ -2279,10 +2386,9 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
       </div>
 
       <div class="policy-sec">
-        <div class="policy-sec-title">Delays</div>
+        <div class="policy-sec-title">Delivery</div>
         <ul class="policy-list">
-          <li class="policy-item">While we strive for timely delivery, unforeseen circumstances (weather, strikes, customs delays) may affect shipping times.</li>
-          <li class="policy-item">We will keep you updated in case of any delays.</li>
+          <li class="policy-item">We will keep you updated with tracking information via email/SMS.</li>
         </ul>
       </div>
     </div>
@@ -2306,7 +2412,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
           </div>
           <div class="contact-i-group">
             <div class="contact-i-label">📱 WhatsApp & Phone</div>
-            <div class="contact-i-val">+91 98400 12345</div>
+            <div class="contact-i-val">+91 7010262108</div>
             <div class="contact-i-sub">Style advice or order updates via WhatsApp.</div>
           </div>
           <div class="contact-i-group">
@@ -2315,8 +2421,22 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
             <div class="contact-i-sub">Standard IST (Chennai) time.</div>
           </div>
           <div class="contact-i-group">
-            <div class="contact-i-label">🏠 Registered Workshop</div>
-            <div class="contact-i-val">Shu Designer Leather Goods,<br>12/4 Leather complex rd, Chennai,<br>Tamil Nadu - 600044.</div>
+            <div class="contact-i-label">🏠 Workshop Address</div>
+            <div class="contact-i-val">Shu Designer Leather Goods,<br>Chennai, India</div>
+          </div>
+          <div class="contact-i-group">
+            <div class="contact-i-label">Founder 1</div>
+            <div class="contact-i-val">Nihal Ahmed (N.M.)</div>
+            <div class="contact-i-sub">📧 nmnihal@gmail.com</div>
+            <div class="contact-i-sub">📱 +91 70102 621108</div>
+            <div class="contact-i-sub">Shop # 150/68, V.A.Kareem Road, Near Water Tank, Ambur-635 802</div>
+          </div>
+          <div class="contact-i-group">
+            <div class="contact-i-label">Founder 2</div>
+            <div class="contact-i-val">Fahmeed Ahmed (V)</div>
+            <div class="contact-i-sub">📧 fahmeedahmedv@gmail.com</div>
+            <div class="contact-i-sub">📱 +91 99443 70360</div>
+            <div class="contact-i-sub">Factory: Madan Nagar, Thuthipet, Ambur-635 811. Tpt.Dist.</div>
           </div>
           <div class="contact-socials">
             <a href="#" class="social-i">📸 Instagram</a>
@@ -2330,7 +2450,7 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
             <div class="c-form-g"><label class="contact-i-label">Email Address</label><input type="email" class="c-input" placeholder="you@example.com" id="cEmail"></div>
           </div>
           <div class="c-form-r">
-            <div class="c-form-g"><label class="contact-i-label">Inquiry Type</label><select class="c-select" id="cType"><option>Size Exchange</option><option>Leather Care Advice</option><option>Order Tracking</option><option>Bulk / Corporate</option><option>Other</option></select></div>
+            <div class="c-form-g"><label class="contact-i-label">Inquiry Type</label><select class="c-select" id="cType"><option>Order Support</option><option>Size Exchange</option><option>Order Tracking</option><option>Bulk / Corporate</option><option>Other</option></select></div>
             <div class="c-form-g"><label class="contact-i-label">Order ID (if any)</label><input type="text" class="c-input" placeholder="e.g. #SD1092" id="cOrder"></div>
           </div>
           <div class="c-form-g"><label class="contact-i-label">How can we help?</label><textarea class="c-ta" placeholder="Describe your inquiry..." id="cMsg"></textarea></div>
@@ -2377,7 +2497,38 @@ footer{background:#060504;padding:80px;border-top:1px solid var(--border)}
   </div>
 </div>
 
+<!-- WhatsApp Floating Icon moved to end of document -->
+
+<style>
+.whatsapp-outer{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:6px;background:#ffffff;box-shadow:0 10px 30px rgba(0,0,0,0.18);animation:wh-float 4s ease-in-out infinite}
+.whatsapp-inner{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#25D366,#1DA851);width:56px;height:56px;border-radius:50%;box-shadow:0 8px 22px rgba(37,211,102,0.28);transition:transform .22s ease,box-shadow .22s ease;transform:scale(1)}
+.whatsapp-inner svg{width:30px;height:30px;display:block}
+.whatsapp-float{position:fixed;right:22px;bottom:22px;z-index:1000025;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.whatsapp-float:focus{outline:2px solid rgba(37,211,102,0.25);outline-offset:4px}
+.whatsapp-float:hover .whatsapp-inner{transform:scale(1.08);box-shadow:0 12px 34px rgba(37,211,102,0.36)}
+@media(max-width:768px){.whatsapp-inner{width:50px;height:50px}.whatsapp-outer{padding:5px}}
+
+@keyframes wh-float{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+
+@media(max-width:480px){
+  .whatsapp-float{right:14px;bottom:14px}
+  .whatsapp-inner{width:44px;height:44px}
+}
+</style>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+<script>
+function openOwnerCard(){
+  const el = document.getElementById('ownerCardOverlay');
+  if(el){ el.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+}
+function closeOwnerCard(){
+  const el = document.getElementById('ownerCardOverlay');
+  if(el){ el.style.display = 'none'; document.body.style.overflow = ''; }
+}
+
+// close modal on ESC
+document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeOwnerCard(); } });
+</script>
 <script>
 // ===================== DATA =====================
 let products = [
@@ -2388,9 +2539,9 @@ let products = [
   {id:3,name:'Tuscan Boot',brand:'Shu Designer',price:14999,origPrice:null,category:'boot',emoji:'🥾',image:'boots.png',colors:['#6B4C2A','#1A1208','#B8956A'],colorNames:['brown','dark brown','tan'],tag:'Limited',shortDesc:'Suede upper with leather sole. Chelsea silhouette. Elastic side panels.',sizes:[7,8,9,10,11,12],stock:8},
   {id:4,name:'Venezia Loafer',brand:'Shu Designer',price:9799,origPrice:null,category:'loafer',emoji:'🥿',image:'loafers.png',colors:['#0D0D0D','#C4722A'],colorNames:['black','tan'],tag:'Popular',shortDesc:'Penny loafer design. Polished calf leather. Gold-tone hardware accent.',sizes:[7,8,9,10],stock:22},
   {id:5,name:'Roma Brogue',brand:'Shu Designer',price:12499,origPrice:14999,category:'oxford',emoji:'👞',image:'oxford1.png',colors:['#1A1208','#0D0D0D'],colorNames:['brown','black'],tag:'Classic',shortDesc:'Full brogue detailing. Antique calf leather. Traditional lace-up oxford.',sizes:[7,8,9,10,11],stock:15},
-  {id:6,name:'Siena Sandal',brand:'Shu Designer',price:6499,origPrice:null,category:'sandal',emoji:'👡',image:'sandal.png',colors:['#C4722A','#D2B48C','#8B4513'],colorNames:['tan','beige','brown'],tag:'Summer',shortDesc:'Artisanal leather sandal. Hand-stitched straps. Cushioned footbed.',sizes:[6,7,8,9],stock:30},
-  {id:14,name:'Capri Strap Sandal',brand:'Shu Designer',price:6999,origPrice:null,category:'sandal',emoji:'👡',image:'sandal1.png',colors:['#C4722A','#8B4513'],colorNames:['tan','brown'],tag:'New',shortDesc:'Minimal leather strap sandal with padded sole and hand-finished detailing for everyday comfort.',sizes:[6,7,8,9,10],stock:24},
-  {id:15,name:'Arezzo Slide Sandal',brand:'Shu Designer',price:7499,origPrice:8499,category:'sandal',emoji:'👡',image:'sandal2.png',colors:['#D2B48C','#1A1208'],colorNames:['beige','dark brown'],tag:'Popular',shortDesc:'Refined slide sandal crafted in supple leather with a contoured footbed and premium finish.',sizes:[6,7,8,9,10],stock:19},
+  {id:6,name:"Siena Men's Sandal",brand:'Shu Designer',price:6499,origPrice:null,category:'sandal',emoji:'👡',image:'sandal.png',colors:['#C4722A','#D2B48C','#8B4513'],colorNames:['tan','beige','brown'],tag:'Summer',shortDesc:"Men's leather slide with cushioned footbed and hand-stitched straps.",sizes:[6,7,8,9],stock:30},
+  {id:14,name:"Capri Strap Men's Sandal",brand:'Shu Designer',price:6999,origPrice:null,category:'sandal',emoji:'👡',image:'sandal1.png',colors:['#C4722A','#8B4513'],colorNames:['tan','brown'],tag:'New',shortDesc:"Men's strap sandal — padded sole and hand-finished detailing.",sizes:[6,7,8,9,10],stock:24},
+  {id:15,name:"Arezzo Slide Men's Sandal",brand:'Shu Designer',price:7499,origPrice:8499,category:'sandal',emoji:'👡',image:'sandal2.png',colors:['#D2B48C','#1A1208'],colorNames:['beige','dark brown'],tag:'Popular',shortDesc:"Men's refined slide with contoured footbed and premium finish.",sizes:[6,7,8,9,10],stock:19},
   {id:7,name:'Napoli Monk',brand:'Shu Designer',price:13299,origPrice:15999,category:'oxford',emoji:'👞',image:'oxford2.png',colors:['#1A1208','#6B2D0E'],colorNames:['brown','wine'],tag:'New',shortDesc:'Double monk strap. Box-calf leather. Polished square toe design.',sizes:[7,8,9,10,11],stock:10},
   {id:8,name:'Palermo Chelsea',brand:'Shu Designer',price:15499,origPrice:null,category:'boot',emoji:'🥾',image:'boots1.png',colors:['#0D0D0D','#1A1208'],colorNames:['black','brown'],tag:'Bestseller',shortDesc:'Premium Chelsea boot. Calf leather upper. Stacked leather heel.',sizes:[7,8,9,10,11,12],stock:6},
   {id:13,name:'Raven Zip Boot',brand:'Shu Designer',price:16299,origPrice:18499,category:'boot',emoji:'🥾',image:'boots2.png',colors:['#0D0D0D','#6B4C2A'],colorNames:['black','dark brown'],tag:'New',shortDesc:'Modern side-zip leather boot with a sleek silhouette, cushioned insole, and durable stacked heel.',sizes:[7,8,9,10,11],stock:7},
@@ -2405,6 +2556,258 @@ let reviews = [];
 let isLoggedIn = false;
 let isAdmin = false;
 let currentUser = null;
+const API_URL = 'api.php';
+const CATEGORY_EMOJIS = { oxford: 'ðŸ‘ž', derby: 'ðŸ‘Ÿ', loafer: 'ðŸ¥¿', boot: 'ðŸ¥¾', sandal: 'ðŸ‘¡', monk: 'ðŸ‘ž' };
+let appBootstrapped = false;
+// Development helpers: set to true to bypass server-side auth/requests for testing only
+const DEV_BYPASS_AUTH = true;
+// When NO_SERVER is true the client will not attempt any network requests and will accept empty inputs
+const NO_SERVER = true;
+
+function normalizeProduct(raw) {
+  const colors = Array.isArray(raw.colors) && raw.colors.length ? raw.colors : ['#1A1208'];
+  return {
+    id: Number(raw.id),
+    name: raw.name || 'Untitled Product',
+    brand: raw.brand || 'Shu Designer',
+    price: Number(raw.price) || 0,
+    origPrice: raw.orig_price !== null && raw.orig_price !== undefined ? Number(raw.orig_price) : (raw.origPrice ?? null),
+    category: raw.category || 'oxford',
+    emoji: CATEGORY_EMOJIS[raw.category] || 'ðŸ‘ž',
+    image: raw.image || raw.image_path || '',
+    colors,
+    colorNames: Array.isArray(raw.color_names) && raw.color_names.length ? raw.color_names : colors.map((_, index) => `Color ${index + 1}`),
+    tag: raw.tag || 'New',
+    shortDesc: raw.short_desc || raw.shortDesc || 'Handcrafted leather shoe.',
+    fullDesc: raw.full_desc || raw.fullDesc || '',
+    sizes: Array.isArray(raw.sizes) ? raw.sizes.map(size => Number(size)).filter(Boolean) : [],
+    stock: Number(raw.stock) || 0
+  };
+}
+
+function setProducts(list) {
+  products = Array.isArray(list) ? list.map(normalizeProduct) : [];
+}
+
+async function apiRequest(action, options = {}) {
+  const { method = 'GET', body, isFormData = false } = options;
+  // If NO_SERVER is enabled, return mocked responses and avoid network calls
+  if (typeof NO_SERVER !== 'undefined' && NO_SERVER) {
+    // Provide lightweight mock behavior for common actions
+    switch (action) {
+      case 'bootstrap':
+        return { success: true, user: currentUser, products };
+      case 'login':
+        {
+          const email = body?.email || 'dev@local';
+          const fakeUser = { id: Date.now(), name: (email.split && email.split('@')[0]) || 'Dev', email, is_admin: false };
+          currentUser = fakeUser; isLoggedIn = true; isAdmin = false;
+          return { success: true, user: fakeUser, products };
+        }
+      case 'register':
+        {
+          const email = body?.email || 'new@local';
+          const newUser = { id: Date.now(), name: (body?.first_name || body?.firstName || 'User'), email, phone: body?.phone || '', is_admin: false };
+          currentUser = newUser; isLoggedIn = true; isAdmin = false;
+          return { success: true, user: newUser, products };
+        }
+      case 'admin_login':
+        {
+          const adminUser = { id: 1, name: 'Admin', email: 'admin@shudesigner.com', is_admin: true };
+          currentUser = adminUser; isLoggedIn = true; isAdmin = true;
+          return { success: true, user: adminUser, products };
+        }
+      case 'logout':
+        currentUser = null; isLoggedIn = false; isAdmin = false; return { success: true };
+      case 'delete_product':
+        if (body && body.id) { products = products.filter(p => p.id !== body.id); }
+        return { success: true, products };
+      case 'create_product':
+        if (body) { const np = { ...body, id: Date.now() }; products.push(np); }
+        return { success: true, products };
+      default:
+        return { success: true, products, user: currentUser };
+    }
+  }
+
+  const config = { method, credentials: 'same-origin' };
+
+  if (body !== undefined) {
+    if (isFormData) {
+      config.body = body;
+    } else {
+      config.headers = { 'Content-Type': 'application/json' };
+      config.body = JSON.stringify(body);
+    }
+  }
+
+  const response = await fetch(`${API_URL}?action=${encodeURIComponent(action)}`, config);
+  const rawText = await response.text();
+  let data = null;
+
+  try {
+    data = rawText ? JSON.parse(rawText) : null;
+  } catch (error) {
+    console.warn('Non-JSON response from API:', rawText);
+    throw new Error('Server returned an unexpected response. Please try again.');
+  }
+
+  if (!data) {
+    throw new Error('Server returned an empty response.');
+  }
+
+  if (!response.ok || !data.success) {
+    throw new Error(data.message || 'Request failed');
+  }
+
+  return data;
+}
+
+function syncUserState(user) {
+  currentUser = user || null;
+  isLoggedIn = !!user;
+  isAdmin = !!user?.is_admin;
+
+  const authBtn = document.getElementById('authNavBtn');
+  const ordersBtn = document.getElementById('ordersNavBtn');
+  const adminBtn = document.getElementById('adminNavBtn');
+  const adminName = document.getElementById('adminName');
+
+  if (isLoggedIn) {
+    authBtn.innerHTML = `<span class="auth-text">${isAdmin ? 'Home' : currentUser.name}</span>`;
+    authBtn.onclick = () => showPage(isAdmin ? 'home' : 'auth');
+    ordersBtn.style.display = 'block';
+  } else {
+    authBtn.innerHTML = `<span class="auth-text">Sign In</span>`;
+    authBtn.onclick = () => showPage('auth');
+    ordersBtn.style.display = 'none';
+  }
+
+  adminBtn.style.display = isAdmin ? 'inline-block' : 'none';
+  if (adminName) adminName.textContent = isAdmin ? currentUser.name : 'Admin';
+}
+
+// Owners data helpers: persisted in localStorage when NO_SERVER is true
+function getOwnersFromStorage() {
+  try {
+    const raw = localStorage.getItem('shu_owners_v1');
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch (e) { return null; }
+}
+
+function saveOwnersToStorage(obj) {
+  try { localStorage.setItem('shu_owners_v1', JSON.stringify(obj)); return true; } catch (e) { return false; }
+}
+
+function renderOwnersFromStorage() {
+  const stored = getOwnersFromStorage();
+  // If nothing stored, do nothing (initial HTML has defaults)
+  if (!stored) return;
+  // founder
+  if (stored.founder) {
+    const f = stored.founder;
+    const elName = document.getElementById('founderName'); if (elName) elName.textContent = f.name || '';
+    const elRole = document.getElementById('founderRole'); if (elRole) elRole.textContent = f.role || '';
+    const elAddr = document.getElementById('founderAddr'); if (elAddr) elAddr.textContent = f.address || '';
+    const tel = f.phone || '';
+    const wa = f.whats || '';
+    const em = f.email || '';
+    const telLink = document.getElementById('founderTelLink'); if (telLink) { telLink.href = tel.startsWith('tel:') ? tel : `tel:${tel}`; telLink.textContent = telLink.textContent.split(' ')[0] + ' ' + (tel.replace(/[^+0-9]/g,'') || tel); }
+    const waLink = document.getElementById('founderWaLink'); if (waLink) { waLink.href = wa.startsWith('https://') ? wa : `https://wa.me/${wa.replace(/[^0-9]/g,'')}`; }
+    const emLink = document.getElementById('founderEmailLink'); if (emLink) { emLink.href = em.startsWith('mailto:') ? em : `mailto:${em}`; }
+  }
+  // cofounder
+  if (stored.cofounder) {
+    const c = stored.cofounder;
+    const elName = document.getElementById('cofounderName'); if (elName) elName.textContent = c.name || '';
+    const elRole = document.getElementById('cofounderRole'); if (elRole) elRole.textContent = c.role || '';
+    const elAddr = document.getElementById('cofounderAddr'); if (elAddr) elAddr.textContent = c.address || '';
+    const tel = c.phone || '';
+    const wa = c.whats || '';
+    const em = c.email || '';
+    const telLink = document.getElementById('cofounderTelLink'); if (telLink) { telLink.href = tel.startsWith('tel:') ? tel : `tel:${tel}`; telLink.textContent = telLink.textContent.split(' ')[0] + ' ' + (tel.replace(/[^+0-9]/g,'') || tel); }
+    const waLink = document.getElementById('cofounderWaLink'); if (waLink) { waLink.href = wa.startsWith('https://') ? wa : `https://wa.me/${wa.replace(/[^0-9]/g,'')}`; }
+    const emLink = document.getElementById('cofounderEmailLink'); if (emLink) { emLink.href = em.startsWith('mailto:') ? em : `mailto:${em}`; }
+  }
+  // Populate admin fields if present
+  try {
+    const s = stored;
+    if (s && s.founder) {
+      if (document.getElementById('adminFounderName')) document.getElementById('adminFounderName').value = s.founder.name || '';
+      if (document.getElementById('adminFounderRole')) document.getElementById('adminFounderRole').value = s.founder.role || '';
+      if (document.getElementById('adminFounderAddr')) document.getElementById('adminFounderAddr').value = s.founder.address || '';
+      if (document.getElementById('adminFounderPhone')) document.getElementById('adminFounderPhone').value = s.founder.phone || '';
+      if (document.getElementById('adminFounderWhats')) document.getElementById('adminFounderWhats').value = s.founder.whats || '';
+      if (document.getElementById('adminFounderEmail')) document.getElementById('adminFounderEmail').value = s.founder.email || '';
+    }
+    if (s && s.cofounder) {
+      if (document.getElementById('adminCofounderName')) document.getElementById('adminCofounderName').value = s.cofounder.name || '';
+      if (document.getElementById('adminCofounderRole')) document.getElementById('adminCofounderRole').value = s.cofounder.role || '';
+      if (document.getElementById('adminCofounderAddr')) document.getElementById('adminCofounderAddr').value = s.cofounder.address || '';
+      if (document.getElementById('adminCofounderPhone')) document.getElementById('adminCofounderPhone').value = s.cofounder.phone || '';
+      if (document.getElementById('adminCofounderWhats')) document.getElementById('adminCofounderWhats').value = s.cofounder.whats || '';
+      if (document.getElementById('adminCofounderEmail')) document.getElementById('adminCofounderEmail').value = s.cofounder.email || '';
+    }
+  } catch (e) {}
+}
+
+function saveOwnerDetails() {
+  const obj = { founder: {}, cofounder: {} };
+  obj.founder.name = (document.getElementById('adminFounderName') || {}).value || '';
+  obj.founder.role = (document.getElementById('adminFounderRole') || {}).value || '';
+  obj.founder.address = (document.getElementById('adminFounderAddr') || {}).value || '';
+  obj.founder.phone = (document.getElementById('adminFounderPhone') || {}).value || '';
+  obj.founder.whats = (document.getElementById('adminFounderWhats') || {}).value || '';
+  obj.founder.email = (document.getElementById('adminFounderEmail') || {}).value || '';
+
+  obj.cofounder.name = (document.getElementById('adminCofounderName') || {}).value || '';
+  obj.cofounder.role = (document.getElementById('adminCofounderRole') || {}).value || '';
+  obj.cofounder.address = (document.getElementById('adminCofounderAddr') || {}).value || '';
+  obj.cofounder.phone = (document.getElementById('adminCofounderPhone') || {}).value || '';
+  obj.cofounder.whats = (document.getElementById('adminCofounderWhats') || {}).value || '';
+  obj.cofounder.email = (document.getElementById('adminCofounderEmail') || {}).value || '';
+
+  // Save locally for dev mode
+  saveOwnersToStorage(obj);
+  renderOwnersFromStorage();
+  alert('Owner details saved locally (dev mode).');
+}
+
+async function bootstrapApp() {
+  const data = await apiRequest('bootstrap');
+  setProducts(data.products);
+  syncUserState(data.user);
+  renderProducts();
+  renderTopProducts();
+  renderAdminProducts();
+  renderOrders();
+  updateCart();
+  updateWishlist();
+  renderReviews();
+  // Set featured price from first product (fallback if available)
+    try {
+    const priceFloat = document.getElementById('featuredPrice');
+    const priceSimple = document.getElementById('featuredPriceSimple');
+    if (priceFloat && priceSimple && products && products.length) {
+      // If the featured product is tagged 'New', hide all price displays for the featured section.
+      if (products[0].tag === 'New') {
+        priceFloat.style.display = 'none';
+        priceFloat.innerHTML = '';
+        priceSimple.style.display = 'none';
+        priceSimple.innerHTML = '';
+      } else {
+        priceSimple.style.display = 'none';
+        priceSimple.innerHTML = '';
+        priceFloat.style.display = '';
+        priceFloat.innerHTML = `<div class="price-simple"><div class="price-current">₹${(Number(products[0].price) || 0).toLocaleString('en-IN')}</div>${products[0].origPrice?`<div class="price-old">₹${Number(products[0].origPrice).toLocaleString('en-IN')}</div>`:''}</div>`;
+      }
+    }
+  } catch (e) { console.warn('Unable to set featured price', e); }
+  // Render owners from storage/local values
+  try { renderOwnersFromStorage(); } catch (e) { console.warn('renderOwnersFromStorage error', e); }
+  appBootstrapped = true;
+}
 
 // ===================== PAGE ROUTING =====================
 function showPage(page) {
@@ -2468,8 +2871,10 @@ function renderProducts(filter = 'all', searchResults = null) {
         <div class="prod-short">${p.shortDesc}</div>
         <div class="prod-foot">
           <div>
-            <div class="prod-price">₹${p.price.toLocaleString('en-IN')}</div>
-            ${p.origPrice ? `<div style="font-size:11px;color:var(--muted);text-decoration:line-through;margin-top:2px">₹${p.origPrice.toLocaleString('en-IN')}</div>` : ''}
+            ${ (p.price && Number(p.price) > 0) ? `<div class="price-simple"> 
+              <div class="price-current">₹${Number(p.price).toLocaleString('en-IN')}</div>
+              ${p.origPrice ? `<div class="price-old">₹${Number(p.origPrice).toLocaleString('en-IN')}</div>` : ''}
+            </div>` : `<div class="price-simple"><div class="price-current">Only</div></div>` }
           </div>
           <div class="swatches">${p.colors.map((c, i) => `<div class="sw${i===0?' on':''}" title="${p.colorNames?.[i] || 'Color option'}" style="background:${c}" onclick="event.stopPropagation(); showProductDetails(${p.id}, '${p.colorNames?.[i] || ''}')"></div>`).join('')}</div>
         </div>
@@ -2490,7 +2895,7 @@ function handleSearch(q) {
     const inName = p.name.toLowerCase().includes(query);
     const inCat = p.category.toLowerCase().includes(query);
     const inDesc = p.shortDesc.toLowerCase().includes(query);
-    const inColor = p.colorNames.some(c => c.toLowerCase().includes(query));
+    const inColor = (p.colorNames || []).some(c => c.toLowerCase().includes(query));
     return inName || inCat || inDesc || inColor;
   });
   
@@ -2573,6 +2978,13 @@ function openNewArrivals() {
   }, 150);
 }
 
+function openFeaturedPDP() {
+  // Prefer the first product tagged 'New', otherwise fallback to the first product
+  const featured = products.find(p => p.tag === 'New') || products[0];
+  if (!featured) return;
+  showProductDetails(featured.id);
+}
+
 function selSize(btn) {
   btn.closest('.feat-sizes').querySelectorAll('.size-btn').forEach(b => b.classList.remove('sel'));
   btn.classList.add('sel');
@@ -2585,7 +2997,10 @@ function getCategoryProducts(category) {
 function getColorOptions(product) {
   const colorMap = new Map();
   getCategoryProducts(product.category).forEach(item => {
-    (item.colorNames || []).forEach((name, index) => {
+    const names = (item.colorNames && item.colorNames.length)
+      ? item.colorNames
+      : (item.colors || []).map((_, index) => `Color ${index + 1}`);
+    names.forEach((name, index) => {
       const key = String(name).toLowerCase();
       if (!colorMap.has(key)) {
         colorMap.set(key, {
@@ -2777,6 +3192,14 @@ function showProductDetails(id, selectedColorName = '') {
       </div>
     ` : '';
   
+  // Prepare price HTML: hide price display for New arrivals
+  let pdpPriceHtml = '';
+  if (p.tag !== 'New' && p.price && Number(p.price) > 0) {
+    pdpPriceHtml = `₹${Number(p.price).toLocaleString('en-IN')}` + (p.origPrice ? `<div class="pdp-orig-price">₹${Number(p.origPrice).toLocaleString('en-IN')}</div>` : '');
+  } else {
+    pdpPriceHtml = '';
+  }
+
   container.innerHTML = `
     <div class="pdp-left">
       ${displayProduct.image ? `<img src="${displayProduct.image}" alt="${displayProduct.name}" class="pdp-photo">` : `<div class="pdp-shoe-anim">${displayProduct.emoji}</div>`}
@@ -2786,10 +3209,9 @@ function showProductDetails(id, selectedColorName = '') {
       <div class="pdp-brand">${displayProduct.brand}</div>
       <div class="pdp-title">${displayProduct.name}</div>
       <div class="pdp-price">
-        ₹${p.price.toLocaleString('en-IN')}
-        ${p.origPrice ? `<div class="pdp-orig-price">₹${p.origPrice.toLocaleString('en-IN')}</div>` : ''}
+        ${pdpPriceHtml}
       </div>
-      <div class="pdp-desc">${displayProduct.shortDesc} <br><br> Handcrafted using the finest materials. Genuine leather upper, breathable lining, and custom-welted sole for superior durability. Ships securely packaged within 24 hours.</div>
+      <div class="pdp-desc">${displayProduct.fullDesc || displayProduct.shortDesc + ' Handcrafted using the finest materials. Genuine leather upper, breathable lining, and custom-welted sole for superior durability. Ships securely packaged within 24 hours.'}</div>
       
       <div class="pdp-section-l">Select Size</div>
       <div class="feat-sizes">${sizeHtml}</div>
@@ -2800,8 +3222,8 @@ function showProductDetails(id, selectedColorName = '') {
       ${relatedShoesHtml}
       
       <div style="display:flex;gap:14px">
-        <button class="btn-pri" style="flex:1" onclick="addToCart({id:${p.id}, name:'${p.name}',price:${p.price},emoji:'${p.emoji}'})">Add to Cart</button>
-        <button class="btn-sec" style="flex:1" onclick="buyNow(${p.id})">Buy Now</button>
+        <button class="btn-pri" style="flex:1" onclick="event.stopPropagation(); if(!${p.price || 0}){ showToast('Contact for price'); return;} addToCart({id:${p.id}, name:'${p.name}',price:${p.price || 0},emoji:'${p.emoji}'})">Add to Cart</button>
+        <button class="btn-sec" style="flex:1" onclick="(function(){ if(!${p.price || 0}){ showToast('Contact for price'); return; } buyNow(${p.id}); })()">Buy Now</button>
       </div>
     </div>
   `;
@@ -2816,6 +3238,10 @@ function buyNow(id) {
     if (p) sessionStorage.setItem('cartIntent', JSON.stringify({id: p.id, name: p.name, price: p.price, emoji: p.emoji}));
     return;
   }
+  // Prevent checkout when price is missing
+  const prodCheck = products.find(x => x.id === id) || null;
+  if (prodCheck && (!prodCheck.price || Number(prodCheck.price) <= 0)) { showToast('Contact for price'); return; }
+
   // If it's the special featured shoe with id 101
   if (id === 101) {
     const ex = cart.find(i => i.name === 'Firenze Derby Brogue');
@@ -3615,7 +4041,7 @@ function normalizeEmailSuggestion(rawEmail) {
   return { email, suggestion: null };
 }
 
-function doLogin() {
+async function doLogin() {
   const emailInput = document.getElementById('loginEmail');
   const { email, suggestion } = normalizeEmailSuggestion(emailInput.value);
   const pass = document.getElementById('loginPass').value;
@@ -3623,20 +4049,24 @@ function doLogin() {
     emailInput.value = suggestion;
     showToast('Please use ' + suggestion);
     emailInput.focus();
-    return;
+    if (!NO_SERVER) return;
   }
-  if (!email || !pass) { showToast('Please fill all fields'); return; }
-  isLoggedIn = true;
-  currentUser = { name: email.split('@')[0], email };
-  const authBtn = document.getElementById('authNavBtn');
-  authBtn.innerHTML = `<span class="auth-text">${currentUser.name}</span>`;
-  authBtn.onclick = () => showPage('auth');
-  document.getElementById('ordersNavBtn').style.display = 'block';
-  renderOrders();
-  showPage('home');
+  if (!email || !pass) { if (!NO_SERVER) { showToast('Please fill all fields'); return; } }
+  try {
+    const data = await apiRequest('login', { method: 'POST', body: { email, password: pass } });
+    setProducts(data.products);
+    syncUserState(data.user);
+    renderProducts();
+    renderTopProducts();
+    renderAdminProducts();
+    renderOrders();
+    showPage('home');
   showToast('Welcome back! Signed in successfully ✓');
   const intent = sessionStorage.getItem('cartIntent');
   if (intent) { addToCart(JSON.parse(intent)); sessionStorage.removeItem('cartIntent'); }
+  } catch (error) {
+    showToast(error.message);
+  }
 }
 
 function doRegister() {
@@ -3651,10 +4081,10 @@ function doRegister() {
     emailInput.value = suggestion;
     showToast('Please use ' + suggestion);
     emailInput.focus();
-    return;
+    if (!NO_SERVER) return;
   }
-  if (!first || !email || !pass) { showToast('Please fill all required fields'); return; }
-  if (pass !== pass2) { showToast('Passwords do not match'); return; }
+  if (!first || !email || !pass) { if (!NO_SERVER) { showToast('Please fill all required fields'); return; } }
+  if (pass !== pass2) { if (!NO_SERVER) { showToast('Passwords do not match'); return; } else { document.getElementById('regPass2').value = pass2 = pass; } }
   isLoggedIn = true;
   currentUser = { name: first, email, phone };
   const authBtn = document.getElementById('authNavBtn');
@@ -3754,17 +4184,28 @@ function toggleColor(el) { el.classList.toggle('sel'); }
 function handleImageUpload(e) {
   const box = document.getElementById('previewBox');
   box.innerHTML = '';
-  Array.from(e.target.files).forEach(file => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const img = document.createElement('img');
-      img.src = ev.target.result;
-      img.className = 'prev-img-item';
-      box.appendChild(img);
-    };
-    reader.readAsDataURL(file);
-  });
-  showToast(e.target.files.length + ' image(s) uploaded');
+  const file = e.target.files && e.target.files[0] ? e.target.files[0] : null;
+  if (!file) {
+    showToast('Please choose one image');
+    return;
+  }
+
+  const allowedTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  if (!allowedTypes.includes(file.type)) {
+    e.target.value = '';
+    showToast('Only JPG, PNG, WEBP, and GIF images are allowed');
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = ev => {
+    const img = document.createElement('img');
+    img.src = ev.target.result;
+    img.className = 'prev-img-item';
+    box.appendChild(img);
+  };
+  reader.readAsDataURL(file);
+  showToast(file.name + ' selected');
 }
 
 function submitProduct() {
@@ -3780,7 +4221,7 @@ function submitProduct() {
   const sizes = sizesRaw.split(',').map(s => parseInt(s.trim())).filter(Boolean);
   const selectedColors = Array.from(document.querySelectorAll('.cp-swatch.sel')).map(s => s.dataset.color);
   const emojis = { oxford: '👞', derby: '👟', loafer: '🥿', boot: '🥾', sandal: '👡', monk: '👞' };
-  if (!name || !price) { showToast('Product name and price are required'); return; }
+  if (!name || !price) { if (!NO_SERVER) { showToast('Product name and price are required'); return; } }
   const newProduct = {
     id: Date.now(), name, brand: brand || 'Shu Designer', price, origPrice, category: cat,
     emoji: emojis[cat] || '👞', colors: selectedColors.length ? selectedColors : ['#1A1208'],
@@ -3797,6 +4238,222 @@ function submitProduct() {
   showToast('✓ ' + name + ' published successfully!');
   renderProducts();
   showAdminPanel('products', document.querySelectorAll('.admin-nav-item')[2]);
+}
+
+// ===================== DB OVERRIDES =====================
+async function doLogin() {
+  const emailInput = document.getElementById('loginEmail');
+  const { email, suggestion } = normalizeEmailSuggestion(emailInput.value);
+  const pass = document.getElementById('loginPass').value;
+  if (suggestion) {
+    emailInput.value = suggestion;
+    showToast('Please use ' + suggestion);
+    emailInput.focus();
+    if (!NO_SERVER) return;
+  }
+  if (!email || !pass) { if (!NO_SERVER) { showToast('Please fill all fields'); return; } }
+  // Development bypass: skip server validation when DEV_BYPASS_AUTH is true
+  if (typeof DEV_BYPASS_AUTH !== 'undefined' && DEV_BYPASS_AUTH) {
+    // Create a simple user object from the email for testing
+    const displayName = email.split('@')[0] || 'Tester';
+    const fakeUser = { id: Date.now(), name: displayName, email, is_admin: false };
+    try {
+      // Sync local app state as if login succeeded
+      syncUserState(fakeUser);
+      // Optionally re-render products if server data absent
+      renderProducts();
+      renderTopProducts();
+      renderAdminProducts();
+      renderOrders();
+      showPage('home');
+      showToast('Signed in (dev mode) — no server validation');
+      const intent = sessionStorage.getItem('cartIntent');
+      if (intent) { addToCart(JSON.parse(intent)); sessionStorage.removeItem('cartIntent'); }
+    } catch (err) {
+      console.error('Dev login error:', err);
+      showToast('Unable to complete dev sign-in');
+    }
+    return;
+  }
+
+  try {
+    const data = await apiRequest('login', { method: 'POST', body: { email, password: pass } });
+    setProducts(data.products);
+    syncUserState(data.user);
+    renderProducts();
+    renderTopProducts();
+    renderAdminProducts();
+    renderOrders();
+    showPage('home');
+    showToast('Welcome back! Signed in successfully');
+    const intent = sessionStorage.getItem('cartIntent');
+    if (intent) { addToCart(JSON.parse(intent)); sessionStorage.removeItem('cartIntent'); }
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+async function doRegister() {
+  const first = document.getElementById('regFirst').value.trim();
+  const last = document.getElementById('regLast').value.trim();
+  const emailInput = document.getElementById('regEmail');
+  const { email, suggestion } = normalizeEmailSuggestion(emailInput.value);
+  const phone = document.getElementById('regPhone').value.trim();
+  const pass = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+  if (suggestion) {
+    emailInput.value = suggestion;
+    showToast('Please use ' + suggestion);
+    emailInput.focus();
+    if (!NO_SERVER) return;
+  }
+  if (!first || !email || !pass) { showToast('Please fill all required fields'); return; }
+  if (pass !== pass2) { showToast('Passwords do not match'); return; }
+  try {
+    const data = await apiRequest('register', {
+      method: 'POST',
+      body: { first_name: first, last_name: last, email, phone, password: pass }
+    });
+    setProducts(data.products);
+    syncUserState(data.user);
+    renderProducts();
+    renderTopProducts();
+    renderAdminProducts();
+    renderOrders();
+    showPage('home');
+    showToast('Account created! Welcome to Shu Designer, ' + first);
+    const intent = sessionStorage.getItem('cartIntent');
+    if (intent) { addToCart(JSON.parse(intent)); sessionStorage.removeItem('cartIntent'); }
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+async function doAdminLogin() {
+  try {
+    const data = await apiRequest('admin_login', { method: 'POST', body: {} });
+    setProducts(data.products);
+    syncUserState(data.user);
+    renderProducts();
+    renderTopProducts();
+    renderAdminProducts();
+    showPage('admin');
+    showToast('Admin access granted');
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+async function doLogout() {
+  // In development bypass mode, don't call the server and keep user visible
+  if (typeof DEV_BYPASS_AUTH !== 'undefined' && DEV_BYPASS_AUTH) {
+    showToast('Sign out disabled in dev mode — you remain signed in');
+    return;
+  }
+
+  try {
+    await apiRequest('logout', { method: 'POST', body: {} });
+    syncUserState(null);
+    cart = [];
+    wishlist = [];
+    updateCart();
+    updateWishlist();
+    showPage('home');
+    showToast('Logged out successfully');
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+function renderAdminProducts() {
+  const tbody = document.getElementById('adminProdBody');
+  if (!tbody) return;
+  tbody.innerHTML = products.map((p) => `
+    <tr>
+      <td class="apt-img">${p.image ? `<img src="${p.image}" alt="${p.name}" style="width:42px;height:42px;object-fit:cover;border-radius:6px">` : p.emoji}</td>
+      <td><div style="font-size:14px;font-weight:400">${p.name}</div><div style="font-size:10px;color:var(--muted);margin-top:2px">${p.shortDesc.substring(0,40)}...</div></td>
+      <td><span class="apt-cat">${p.category}</span></td>
+      <td class="apt-price">â‚¹${p.price.toLocaleString('en-IN')}</td>
+      <td style="color:${p.stock<10?'#e83a3a':'var(--muted)'};">${p.stock}</td>
+      <td><span style="font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--gold)">${p.tag}</span></td>
+      <td><button class="apt-del" onclick="deleteProduct(${p.id})">Delete</button></td>
+    </tr>
+  `).join('');
+  document.getElementById('statProducts').textContent = products.length;
+}
+
+async function deleteProduct(productId) {
+  try {
+    const data = await apiRequest('delete_product', { method: 'POST', body: { id: productId } });
+    setProducts(data.products);
+    renderProducts();
+    renderTopProducts();
+    renderAdminProducts();
+    showToast('Product deleted');
+  } catch (error) {
+    showToast(error.message);
+  }
+}
+
+function resetProductForm() {
+  document.getElementById('pName').value = '';
+  document.getElementById('pPrice').value = '';
+  document.getElementById('pBrand').value = 'Shu Designer';
+  document.getElementById('pShortDesc').value = '';
+  document.getElementById('pDesc').value = '';
+  document.getElementById('pOrigPrice').value = '';
+  document.getElementById('pSizes').value = '7,8,9,10,11';
+  document.getElementById('pStock').value = '50';
+  document.getElementById('previewBox').innerHTML = '';
+  const imageInput = document.getElementById('pImages');
+  if (imageInput) imageInput.value = '';
+}
+
+async function submitProduct() {
+  const name = document.getElementById('pName').value.trim();
+  const price = parseInt(document.getElementById('pPrice').value, 10);
+  const brand = document.getElementById('pBrand').value.trim();
+  const cat = document.getElementById('pCat').value;
+  const shortDesc = document.getElementById('pShortDesc').value.trim();
+  const fullDesc = document.getElementById('pDesc').value.trim();
+  const tag = document.getElementById('pTag').value;
+  const stock = parseInt(document.getElementById('pStock').value, 10) || 0;
+  const origPrice = document.getElementById('pOrigPrice').value.trim();
+  const sizes = document.getElementById('pSizes').value.split(',').map(s => parseInt(s.trim(), 10)).filter(Boolean);
+  const selectedColors = Array.from(document.querySelectorAll('.cp-swatch.sel')).map(s => s.dataset.color);
+  const imageInput = document.getElementById('pImages');
+  const imageFile = imageInput && imageInput.files && imageInput.files[0] ? imageInput.files[0] : null;
+
+  if (!name || !price) { showToast('Product name and price are required'); return; }
+  if (!imageFile) { showToast('Please choose a product image before publishing'); return; }
+
+  const formData = new FormData();
+  formData.append('name', name);
+  formData.append('brand', brand || 'Shu Designer');
+  formData.append('category', cat);
+  formData.append('price', String(price));
+  formData.append('orig_price', origPrice);
+  formData.append('short_desc', shortDesc || 'Handcrafted leather shoe.');
+  formData.append('full_desc', fullDesc);
+  formData.append('tag', tag);
+  formData.append('stock', String(stock));
+  formData.append('sizes', JSON.stringify(sizes));
+  formData.append('colors', JSON.stringify(selectedColors.length ? selectedColors : ['#1A1208']));
+
+  formData.append('image', imageFile);
+
+  try {
+    const data = await apiRequest('create_product', { method: 'POST', body: formData, isFormData: true });
+    setProducts(data.products);
+    renderProducts();
+    renderTopProducts();
+    renderAdminProducts();
+    resetProductForm();
+    showToast(data.message || 'Product published successfully');
+    showAdminPanel('products', document.querySelectorAll('.admin-nav-item')[2]);
+  } catch (error) {
+    showToast(error.message);
+  }
 }
 
 // ===================== NEWSLETTER =====================
@@ -4005,10 +4662,6 @@ window.choosePaymentFromModal = function(method) {
 
 // ===================== LOADER =====================
 window.addEventListener('load', () => {
-  renderProducts();
-  renderTopProducts();
-  updateCart();
-  updateWishlist();
   const buyNowBtn = document.getElementById('buyNowBtn');
   const paymentOptions = document.getElementById('paymentOptions');
   const onlineBtn = document.getElementById('onlineBtn');
@@ -4058,11 +4711,38 @@ window.addEventListener('load', () => {
     };
   }
 
-  setTimeout(() => {
-    document.getElementById('loader').classList.add('gone');
-    initReveal();
-  }, 2200);
+  bootstrapApp()
+    .catch(error => {
+      showToast(error.message || 'Unable to load products from the database');
+      renderProducts();
+      renderTopProducts();
+      renderAdminProducts();
+      renderReviews();
+    })
+    .finally(() => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('gone');
+        initReveal();
+      }, 2200);
+    });
 });
 </script>
+
 </body>
 </html>
+
+<!-- WhatsApp Floating Icon (inserted by script) -->
+<script>
+  (function(){
+    const a = document.createElement('a');
+    a.href = 'https://wa.me/917010262108';
+    a.target = '_blank';
+    a.className = 'whatsapp-float';
+    a.title = 'Chat on WhatsApp: 7010262108';
+    a.setAttribute('aria-label','Chat on WhatsApp');
+    a.innerHTML = '<span class="whatsapp-outer"><span class="whatsapp-inner">' +
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>' +
+      '</span></span>';
+    document.body.appendChild(a);
+  })();
+</script>
